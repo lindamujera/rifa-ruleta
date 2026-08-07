@@ -14,7 +14,6 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
-app.use(logger);
 
 app.use("/uploads",express.static(path.join(__dirname, "uploads"))); 
 
