@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
-const logger = require("./middleware/logger");
+
 
 dotenv.config({ override: true });
 
