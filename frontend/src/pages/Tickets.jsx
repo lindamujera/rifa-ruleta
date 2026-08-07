@@ -3,7 +3,7 @@
 // ==========================================
 
 import { useEffect, useState } from "react";
-import TicketService from "../services/TicketService";
+import TicketService from "../services/ticketService";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Tickets.css";
 
