@@ -1,0 +1,391 @@
+/* ==========================================
+   src/components/ticket/TicketStatus.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.ticket-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    width: 100%;
+
+    padding: 18px 22px;
+
+    border-radius: 18px;
+
+    border: 2px solid transparent;
+
+    background: #ffffff;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+
+    transition: all .30s ease;
+
+}
+
+.ticket-status:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+
+}
+
+/* ==========================================
+   Icono
+========================================== */
+
+.ticket-status-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+    flex-shrink: 0;
+
+}
+
+/* ==========================================
+   Información
+========================================== */
+
+.ticket-status-content {
+
+    flex: 1;
+
+}
+
+.ticket-status-content h4 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+.ticket-status-content p {
+
+    margin-top: 6px;
+
+    margin-bottom: 0;
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+
+}
+
+/* ==========================================
+   Tamaños
+========================================== */
+
+.ticket-status.small {
+
+    padding: 12px 16px;
+
+}
+
+.ticket-status.small .ticket-status-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    font-size: 20px;
+
+}
+
+.ticket-status.small h4 {
+
+    font-size: 16px;
+
+}
+
+.ticket-status.small p {
+
+    font-size: 13px;
+
+}
+
+.ticket-status.medium {
+
+    padding: 18px 22px;
+
+}
+
+.ticket-status.large {
+
+    padding: 26px;
+
+}
+
+.ticket-status.large .ticket-status-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    font-size: 34px;
+
+}
+
+.ticket-status.large h4 {
+
+    font-size: 24px;
+
+}
+
+.ticket-status.large p {
+
+    font-size: 16px;
+
+}
+
+/* ==========================================
+   Estado Pendiente
+========================================== */
+
+.ticket-status.pending {
+
+    border-color: #facc15;
+
+    background: #fffbeb;
+
+}
+
+.ticket-status.pending .ticket-status-icon {
+
+    background: #fef3c7;
+
+}
+
+.ticket-status.pending h4 {
+
+    color: #b45309;
+
+}
+
+/* ==========================================
+   Estado Activo
+========================================== */
+
+.ticket-status.active {
+
+    border-color: #22c55e;
+
+    background: #f0fdf4;
+
+}
+
+.ticket-status.active .ticket-status-icon {
+
+    background: #dcfce7;
+
+}
+
+.ticket-status.active h4 {
+
+    color: #15803d;
+
+}
+
+/* ==========================================
+   Estado Ganador
+========================================== */
+
+.ticket-status.winner {
+
+    border-color: #f59e0b;
+
+    background: linear-gradient(
+        135deg,
+        #fff8dc,
+        #ffe082
+    );
+
+}
+
+.ticket-status.winner .ticket-status-icon {
+
+    background: rgba(255,255,255,.55);
+
+}
+
+.ticket-status.winner h4 {
+
+    color: #92400e;
+
+}
+
+/* ==========================================
+   Estado Utilizado
+========================================== */
+
+.ticket-status.used {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+}
+
+.ticket-status.used .ticket-status-icon {
+
+    background: #dbeafe;
+
+}
+
+.ticket-status.used h4 {
+
+    color: #1d4ed8;
+
+}
+
+/* ==========================================
+   Estado Cancelado
+========================================== */
+
+.ticket-status.cancelled {
+
+    border-color: #ef4444;
+
+    background: #fef2f2;
+
+}
+
+.ticket-status.cancelled .ticket-status-icon {
+
+    background: #fee2e2;
+
+}
+
+.ticket-status.cancelled h4 {
+
+    color: #b91c1c;
+
+}
+
+/* ==========================================
+   Estado Expirado
+========================================== */
+
+.ticket-status.expired {
+
+    border-color: #94a3b8;
+
+    background: #f8fafc;
+
+}
+
+.ticket-status.expired .ticket-status-icon {
+
+    background: #e2e8f0;
+
+}
+
+.ticket-status.expired h4 {
+
+    color: #475569;
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .ticket-status {
+
+        padding: 18px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .ticket-status {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 15px;
+
+    }
+
+    .ticket-status-content h4 {
+
+        font-size: 18px;
+
+    }
+
+    .ticket-status-content p {
+
+        font-size: 14px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .ticket-status {
+
+        padding: 15px;
+
+    }
+
+    .ticket-status-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 22px;
+
+    }
+
+    .ticket-status-content h4 {
+
+        font-size: 16px;
+
+    }
+
+    .ticket-status-content p {
+
+        font-size: 13px;
+
+    }
+
+}

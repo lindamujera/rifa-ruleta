@@ -1,0 +1,301 @@
+/* ==========================================
+   src/components/admin/Statistics.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.statistics-container {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+
+    animation: statisticsFade .35s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.statistics-header {
+
+    margin-bottom: 30px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+    text-align: center;
+
+}
+
+.statistics-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.statistics-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+/* ==========================================
+   Tarjetas
+========================================== */
+
+.statistics-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #dbeafe
+    );
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 18px;
+
+    transition: all .30s ease;
+
+    cursor: default;
+
+}
+
+.statistics-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 12px 25px rgba(37, 99, 235, .18);
+
+}
+
+.statistics-card span {
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #1e40af;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+}
+
+.statistics-card strong {
+
+    display: block;
+
+    color: #0f172a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    word-break: break-word;
+
+}
+
+/* ==========================================
+   Colores opcionales para diferentes métricas
+========================================== */
+
+.statistics-card.users {
+
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+
+}
+
+.statistics-card.payments {
+
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+
+}
+
+.statistics-card.tickets {
+
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+
+}
+
+.statistics-card.rounds {
+
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+
+}
+
+.statistics-card.revenue {
+
+    background: linear-gradient(135deg, #cffafe, #a5f3fc);
+
+}
+
+.statistics-card.prizes {
+
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes statisticsFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .statistics-container {
+
+        padding: 25px;
+
+    }
+
+    .statistics-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .statistics-container {
+
+        padding: 20px;
+
+    }
+
+    .statistics-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .statistics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .statistics-card {
+
+        padding: 20px;
+
+    }
+
+    .statistics-card strong {
+
+        font-size: 26px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .statistics-container {
+
+        padding: 15px;
+
+    }
+
+    .statistics-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .statistics-card {
+
+        padding: 18px;
+
+    }
+
+    .statistics-card span {
+
+        font-size: 14px;
+
+    }
+
+    .statistics-card strong {
+
+        font-size: 22px;
+
+    }
+
+}

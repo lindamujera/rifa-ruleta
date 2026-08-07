@@ -1,0 +1,332 @@
+/* ==========================================
+   src/components/roulette/ProgressBar.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.progress-container {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.progress-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+.progress-title {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #1e3a8a;
+
+}
+
+.progress-percentage {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #2563eb;
+
+}
+
+/* ==========================================
+   Barra Exterior
+========================================== */
+
+.progress-track {
+
+    width: 100%;
+
+    height: 18px;
+
+    background: #e2e8f0;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    position: relative;
+
+}
+
+/* ==========================================
+   Barra Interior
+========================================== */
+
+.progress-fill {
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6,
+        #60a5fa
+    );
+
+    transition: width .6s ease;
+
+    position: relative;
+
+}
+
+/* ==========================================
+   Brillo
+========================================== */
+
+.progress-fill::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -40%;
+
+    width: 40%;
+
+    height: 100%;
+
+    background: rgba(255,255,255,.45);
+
+    animation: progressGlow 2s linear infinite;
+
+}
+
+/* ==========================================
+   Información
+========================================== */
+
+.progress-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.progress-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+.progress-item span {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+.progress-item strong {
+
+    font-size: 18px;
+
+    color: #0f172a;
+
+}
+
+/* ==========================================
+   Colores
+========================================== */
+
+.progress-success .progress-fill {
+
+    background: linear-gradient(
+        90deg,
+        #16a34a,
+        #22c55e
+    );
+
+}
+
+.progress-warning .progress-fill {
+
+    background: linear-gradient(
+        90deg,
+        #f59e0b,
+        #fbbf24
+    );
+
+}
+
+.progress-danger .progress-fill {
+
+    background: linear-gradient(
+        90deg,
+        #dc2626,
+        #ef4444
+    );
+
+}
+
+/* ==========================================
+   Animaciones
+========================================== */
+
+@keyframes progressGlow {
+
+    from {
+
+        left: -40%;
+
+    }
+
+    to {
+
+        left: 120%;
+
+    }
+
+}
+
+.progress-container {
+
+    animation: progressFade .35s ease;
+
+}
+
+@keyframes progressFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 768px) {
+
+    .progress-container {
+
+        padding: 20px;
+
+    }
+
+    .progress-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .progress-info {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .progress-container {
+
+        padding: 18px;
+
+    }
+
+    .progress-title {
+
+        font-size: 18px;
+
+    }
+
+    .progress-percentage {
+
+        font-size: 16px;
+
+    }
+
+    .progress-track {
+
+        height: 14px;
+
+    }
+
+    .progress-item strong {
+
+        font-size: 16px;
+
+    }
+
+    .progress-item span {
+
+        font-size: 13px;
+
+    }
+
+}

@@ -1,0 +1,29 @@
+@media(max-width:768px){
+
+  .container{
+    width:95%;
+  }
+
+  h1{
+    font-size:1.8rem;
+  }
+
+  h2{
+    font-size:1.3rem;
+  }
+}
+
+@media(min-width:769px) and (max-width:1024px){
+
+  .container{
+    width:92%;
+  }
+}
+
+@media(min-width:1025px){
+
+  .container{
+    width:90%;
+    max-width:1400px;
+  }
+}

@@ -1,0 +1,307 @@
+/* ==========================================
+   BANNER AZUL PRINCIPAL Y BOTÓN SALIR
+========================================== */
+.roulette-header-banner {
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Separa el texto y el botón */
+    align-items: flex-end;         /* Alinea el botón en la esquina inferior */
+    background-color: #2563eb;      /* Azul del banner */
+    border-radius: 20px;
+    padding: 25px 30px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    margin-bottom: 30px;
+    z-index: 5 !important;         /* Por encima de las monedas */
+}
+
+/* Texto dentro del banner */
+.banner-text-content {
+    max-width: 75%;
+}
+
+/* Botón Salir (esquina inferior derecha) */
+.btn-logout-banner {
+    background-color: #ef4444 !important; /* Rojo */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-logout-banner:hover {
+    background-color: #dc2626 !important;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   ESTRUCTURA GENERAL Y CONTENEDOR CASINO
+========================================== */
+.roulette-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background: #ffffff !important; /* Mantiene la tarjeta blanca */
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* Canvas a pantalla completa detrás de todo */
+.roulette-bg-video {
+    position: fixed !important; /* Cubre toda la ventana */
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: cover;
+    z-index: 0 !important; /* Detrás del banner azul y la tarjeta */
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+/* 3. Mantiene todos los elementos por encima del canvas */
+.roulette-section-title,
+.roulette-info-row,
+.roulette-area,
+.roulette-result,
+.roulette-actions {
+    position: relative;
+    z-index: 5 !important;
+}
+
+.roulette-section-title {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* ==========================================
+   TARJETAS DE INFORMACIÓN
+========================================== */
+.roulette-info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.roulette-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 16px;
+    text-align: center;
+}
+
+.roulette-card h4 {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.roulette-card strong {
+    font-size: 15px;
+    color: #0f172a;
+    word-break: break-all;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-pendiente {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-ejecutado {
+    background: #dcfce7;
+    color: #15803d;
+}
+/* ==========================================
+   🎡 RULETA ARCOÍRIS LIMPIA Y MÁS ANCHA
+========================================== */
+.roulette-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0 10px 0;
+}
+
+/* Puntero Rojo ubicado exactamente en la parte superior */
+.roulette-pointer {
+    position: absolute;
+    top: 10px;
+    z-index: 30;
+    font-size: 38px;
+    color: #ef4444;
+    filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Anulamos cualquier capa oscura oculta o pseudo-elementos */
+.roulette-disc.rainbow-wheel::before,
+.roulette-disc.rainbow-wheel::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Disco 100% lleno de color Arcoíris Abanico (MÁS ANCHO) */
+.roulette-disc.rainbow-wheel {
+    width: 480px;  /* 🚀 Aumentado a 480px */
+    height: 480px; /* 🚀 Aumentado a 480px */
+    border-radius: 50%;
+    position: relative;
+    box-sizing: border-box;
+
+    /* Marco dorado exterior limpio */
+    border: 10px solid #f59e0b;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+
+    /* 🌈 Colores arcoíris idénticos a tu imagen de referencia */
+    background: conic-gradient(
+        #ff0000 0deg 15deg,
+        #ff4000 15deg 30deg,
+        #ff8000 30deg 45deg,
+        #ffbf00 45deg 60deg,
+        #ffff00 60deg 75deg,
+        #80ff00 75deg 90deg,
+        #00ff00 90deg 105deg,
+        #00ff80 105deg 120deg,
+        #00ffff 120deg 135deg,
+        #0080ff 135deg 150deg,
+        #0000ff 150deg 165deg,
+        #4000ff 165deg 180deg,
+        #8000ff 180deg 195deg,
+        #bf00ff 195deg 210deg,
+        #ff00ff 210deg 225deg,
+        #ff00bf 225deg 240deg,
+        #ff0080 240deg 255deg,
+        #ff0040 255deg 270deg,
+        #ff0000 270deg 285deg,
+        #ff5500 285deg 300deg,
+        #ffa500 300deg 315deg,
+        #ffff00 315deg 330deg,
+        #00ff00 330deg 345deg,
+        #ff0000 345deg 360deg
+    ) !important;
+}
+
+/* Botón central pequeño y blanco */
+.roulette-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff !important;
+    border: 3px solid #f59e0b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* ==========================================
+   TARJETA PREMIO GANADO
+========================================== */
+.roulette-result {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border: 2px solid #34d399;
+    border-radius: 22px;
+    padding: 22px 45px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+    animation: popup 0.5s ease-out forwards;
+}
+
+.roulette-result h3 {
+    margin: 0;
+    color: #047857;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.roulette-result h1 {
+    margin: 8px 0 0 0;
+    color: #065f46;
+    font-size: 44px;
+    font-weight: 900;
+}
+
+/* ==========================================
+   ANIMACIONES
+========================================== */
+.icono-ruleta-animado {
+    display: inline-block;
+    animation: girarSuave 8s linear infinite;
+    transform-origin: center;
+}
+
+.icono-premio-animado {
+    display: inline-block;
+    animation: premioBounce 1.5s ease-in-out infinite;
+    color: #f59e0b;
+}
+
+@keyframes girarSuave {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes premioBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.25) rotate(12deg); }
+}
+
+@keyframes popup {
+    0% { opacity: 0; transform: scale(0.7); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Adaptación para pantallas de celulares pequeños */
+@media (max-width: 520px) {
+    .roulette-disc.rainbow-wheel {
+        width: 300px;
+        height: 300px;
+        border-width: 8px;
+    }
+    .roulette-info-row {
+        grid-template-columns: 1fr;
+    }
+}

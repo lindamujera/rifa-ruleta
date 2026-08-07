@@ -1,0 +1,311 @@
+/* ==========================================
+   src/components/ticket/TicketCard.css
+========================================== */
+
+/* ==========================================
+   Tarjeta principal
+========================================== */
+
+.ticket-card {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    margin: 20px auto;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+
+    transition: all 0.30s ease;
+
+}
+
+.ticket-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.18);
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.ticket-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+    color: #ffffff;
+
+}
+
+.ticket-header h2 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.ticket-status {
+
+    padding: 6px 14px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+/* Activo */
+
+.ticket-status.activo {
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+}
+
+/* Pendiente */
+
+.ticket-status.pendiente {
+
+    background: #fef9c3;
+
+    color: #ca8a04;
+
+}
+
+/* Usado */
+
+.ticket-status.usado {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+/* Ganador */
+
+.ticket-status.ganador {
+
+    background: #fde68a;
+
+    color: #b45309;
+
+}
+
+/* Cancelado */
+
+.ticket-status.cancelado {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+/* ==========================================
+   Contenido
+========================================== */
+
+.ticket-body {
+
+    padding: 22px;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.ticket-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #ececec;
+
+}
+
+.ticket-row:last-child {
+
+    border-bottom: none;
+
+}
+
+.ticket-row span {
+
+    color: #64748b;
+
+    font-size: 15px;
+
+}
+
+.ticket-row strong {
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Pie
+========================================== */
+
+.ticket-footer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    padding: 22px;
+
+    background: #f8fafc;
+
+    border-top: 1px solid #e5e7eb;
+
+    flex-wrap: wrap;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.ticket-card {
+
+    animation: ticketFade .35s ease;
+
+}
+
+@keyframes ticketFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 768px) {
+
+    .ticket-card {
+
+        max-width: 100%;
+
+        margin: 15px 10px;
+
+    }
+
+    .ticket-header {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
+
+    }
+
+    .ticket-row {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 6px;
+
+    }
+
+    .ticket-footer {
+
+        flex-direction: column;
+
+    }
+
+    .ticket-footer button {
+
+        width: 100%;
+
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .ticket-header h2 {
+
+        font-size: 18px;
+
+    }
+
+    .ticket-body {
+
+        padding: 18px;
+
+    }
+
+    .ticket-row span,
+
+    .ticket-row strong {
+
+        font-size: 14px;
+
+    }
+
+}

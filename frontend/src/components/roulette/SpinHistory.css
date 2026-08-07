@@ -1,0 +1,383 @@
+/* ==========================================
+   src/components/roulette/SpinHistory.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.spin-history {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.spin-history-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.spin-history-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Botón Actualizar
+========================================== */
+
+.refresh-history {
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all .30s ease;
+
+}
+
+.refresh-history:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+}
+
+.refresh-history:active {
+
+    transform: scale(.98);
+
+}
+
+/* ==========================================
+   Tabla
+========================================== */
+
+.spin-history-table {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 16px;
+
+}
+
+.spin-history-table table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 700px;
+
+}
+
+/* ==========================================
+   Encabezado Tabla
+========================================== */
+
+.spin-history-table thead {
+
+    background: #2563eb;
+
+}
+
+.spin-history-table th {
+
+    padding: 18px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.spin-history-table td {
+
+    padding: 18px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #334155;
+
+    font-size: 15px;
+
+}
+
+.spin-history-table tbody tr {
+
+    transition: all .25s ease;
+
+}
+
+.spin-history-table tbody tr:hover {
+
+    background: #f8fafc;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.spin-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 120px;
+
+    padding: 8px 18px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+/* ==========================================
+   Estados
+========================================== */
+
+.spin-status.completed {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.spin-status.pending {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.spin-status.processing {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+.spin-status.failed {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+.spin-status.cancelled {
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+}
+
+.spin-status.winner {
+
+    background: linear-gradient(
+        135deg,
+        #fde68a,
+        #facc15
+    );
+
+    color: #92400e;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.spin-history {
+
+    animation: fadeSpinHistory .35s ease;
+
+}
+
+@keyframes fadeSpinHistory {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .spin-history {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .spin-history {
+
+        padding: 20px;
+
+    }
+
+    .spin-history-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .spin-history-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .refresh-history {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .spin-history {
+
+        padding: 18px;
+
+    }
+
+    .spin-history-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .spin-history-table table {
+
+        min-width: 600px;
+
+    }
+
+    .spin-history-table th,
+
+    .spin-history-table td {
+
+        padding: 12px;
+
+        font-size: 13px;
+
+    }
+
+    .spin-status {
+
+        min-width: 95px;
+
+        font-size: 11px;
+
+        padding: 6px 12px;
+
+    }
+
+}

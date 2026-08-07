@@ -1,0 +1,349 @@
+/* ==========================================
+   src/components/payment/UploadVoucher.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.upload-voucher-card {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+
+    animation: voucherFade .35s ease;
+
+}
+
+.upload-voucher-card h2 {
+
+    margin: 0;
+
+    text-align: center;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.upload-voucher-card p {
+
+    margin: 15px 0 30px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Selector de Archivo
+========================================== */
+
+.voucher-upload {
+
+    margin-bottom: 30px;
+
+}
+
+.voucher-upload input[type="file"] {
+
+    width: 100%;
+
+    padding: 18px;
+
+    border: 2px dashed #2563eb;
+
+    border-radius: 16px;
+
+    background: #eff6ff;
+
+    cursor: pointer;
+
+    transition: .30s;
+
+    box-sizing: border-box;
+
+}
+
+.voucher-upload input[type="file"]:hover {
+
+    background: #dbeafe;
+
+    border-color: #1d4ed8;
+
+}
+
+/* ==========================================
+   Vista Previa
+========================================== */
+
+.voucher-preview {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+}
+
+.voucher-preview img {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    border-radius: 15px;
+
+    border: 2px solid #e2e8f0;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+
+    transition: .30s;
+
+}
+
+.voucher-preview img:hover {
+
+    transform: scale(1.02);
+
+}
+
+/* ==========================================
+   PDF
+========================================== */
+
+.voucher-pdf {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #cbd5e1;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    color: #1e293b;
+
+}
+
+/* ==========================================
+   Información del Archivo
+========================================== */
+
+.voucher-info {
+
+    margin-bottom: 30px;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+}
+
+.voucher-info p {
+
+    margin: 8px 0;
+
+    color: #334155;
+
+    text-align: left;
+
+}
+
+.voucher-info strong {
+
+    color: #0f172a;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.voucher-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+.voucher-actions button {
+
+    min-width: 180px;
+
+}
+
+/* ==========================================
+   Estado Deshabilitado
+========================================== */
+
+.voucher-actions button:disabled {
+
+    opacity: .7;
+
+    cursor: not-allowed;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes voucherFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .upload-voucher-card {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .upload-voucher-card {
+
+        padding: 20px;
+
+        margin: 20px;
+
+    }
+
+    .upload-voucher-card h2 {
+
+        font-size: 24px;
+
+    }
+
+    .voucher-actions {
+
+        flex-direction: column;
+
+    }
+
+    .voucher-actions button {
+
+        width: 100%;
+
+    }
+
+    .voucher-preview img {
+
+        max-width: 100%;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .upload-voucher-card {
+
+        padding: 18px;
+
+    }
+
+    .upload-voucher-card h2 {
+
+        font-size: 22px;
+
+    }
+
+    .voucher-upload input[type="file"] {
+
+        padding: 14px;
+
+        font-size: 14px;
+
+    }
+
+    .voucher-info {
+
+        padding: 16px;
+
+    }
+
+    .voucher-pdf {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        font-size: 16px;
+
+    }
+
+}

@@ -1,0 +1,289 @@
+/* ==========================================
+   BARRA SUPERIOR (BOTÓN SALIR)
+========================================== */
+
+.top-navbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -15px; /* Ajusta el espacio con el header */
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220, 38, 38, 0.35);
+}
+
+/* ==========================================
+   ROULETTE PAGE
+========================================== */
+
+.roulette-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    padding: 30px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.roulette-header {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+    color: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+}
+
+.roulette-header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.roulette-header p {
+    font-size: 17px;
+    opacity: .95;
+}
+
+/* ==========================================
+   INFORMACIÓN DEL TICKET
+========================================== */
+
+.ticket-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    transition: .3s;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+}
+
+.info-card h3 {
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 22px;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+/* ==========================================
+   RULETA
+========================================== */
+
+.roulette-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roulette-wheel {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+    color: #ffffff;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .20),
+        inset 0 0 30px rgba(255, 255, 255, .15);
+    border: 10px solid #ffffff;
+    transition: .3s;
+}
+
+/* ==========================================
+   ANIMACIONES
+========================================== */
+
+/* Giro continuo de la ruleta grande */
+.spinning {
+    animation: girar 3s linear infinite;
+}
+
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Giro suave del icono <FaRedoAlt /> en los títulos */
+.icono-ruleta-animado {
+    display: inline-block; /* Crucial para que gire sobre su propio centro */
+    animation: girarSuave 8s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+    color: #ffffff; /* O el color que prefieras */
+}
+
+@keyframes girarSuave {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================
+   BOTÓN
+========================================== */
+
+.roulette-button {
+    display: flex;
+    justify-content: center;
+}
+
+.roulette-button button {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .30s;
+}
+
+.roulette-button button:hover {
+    background: #1d4ed8;
+    transform: translateY(-3px);
+}
+
+.roulette-button button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   PREMIO
+========================================== */
+
+.prize-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+}
+
+.prize-card h2 {
+    color: #16a34a;
+    margin-bottom: 15px;
+}
+
+.prize-card h1 {
+    color: #2563eb;
+    font-size: 48px;
+    margin: 15px 0;
+}
+
+.prize-card p {
+    color: #475569;
+    font-size: 18px;
+}
+
+/* ==========================================
+   REGLAS
+========================================== */
+
+.rules-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+}
+
+.rules-card h2 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+.rules-card ul {
+    padding-left: 20px;
+}
+
+.rules-card li {
+    margin-bottom: 15px;
+    color: #475569;
+    line-height: 1.7;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+    .roulette-page {
+        padding: 20px;
+    }
+
+    .roulette-header {
+        padding: 25px;
+    }
+
+    .roulette-header h1 {
+        font-size: 28px;
+    }
+
+    .ticket-info {
+        grid-template-columns: 1fr;
+    }
+
+    .roulette-wheel {
+        width: 240px;
+        height: 240px;
+        font-size: 90px;
+    }
+
+    .prize-card h1 {
+        font-size: 36px;
+    }
+}

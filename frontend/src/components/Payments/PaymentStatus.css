@@ -1,0 +1,433 @@
+/* ==========================================
+   src/components/payment/PaymentStatus.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.payment-status-card {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+
+    animation: paymentStatusFade .4s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.payment-status-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+.payment-status-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 46px;
+
+}
+
+.payment-status-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.payment-status-header p {
+
+    margin-top: 15px;
+
+    color: #64748b;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.payment-status-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+/* ==========================================
+   Tarjetas
+========================================== */
+
+.status-item {
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    transition: all .25s ease;
+
+}
+
+.status-item:hover {
+
+    background: #eff6ff;
+
+    border-color: #2563eb;
+
+    transform: translateY(-3px);
+
+}
+
+.status-item span {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+
+}
+
+.status-item strong {
+
+    color: #0f172a;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    word-break: break-word;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.status-approved {
+
+    color: #16a34a;
+
+}
+
+.status-pending {
+
+    color: #d97706;
+
+}
+
+.status-rejected {
+
+    color: #dc2626;
+
+}
+
+.status-processing {
+
+    color: #2563eb;
+
+}
+
+/* ==========================================
+   Mensaje
+========================================== */
+
+.payment-status-message {
+
+    margin-top: 35px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    border-left: 6px solid #2563eb;
+
+    color: #1e3a8a;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+
+}
+
+.payment-status-message.success {
+
+    background: #dcfce7;
+
+    border-left-color: #16a34a;
+
+    color: #166534;
+
+}
+
+.payment-status-message.warning {
+
+    background: #fef3c7;
+
+    border-left-color: #d97706;
+
+    color: #92400e;
+
+}
+
+.payment-status-message.error {
+
+    background: #fee2e2;
+
+    border-left-color: #dc2626;
+
+    color: #991b1b;
+
+}
+
+/* ==========================================
+   Comprobante
+========================================== */
+
+.payment-proof {
+
+    margin-top: 35px;
+
+    text-align: center;
+
+}
+
+.payment-proof img {
+
+    width: 100%;
+
+    max-width: 450px;
+
+    border-radius: 14px;
+
+    border: 2px solid #e2e8f0;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .12);
+
+    transition: .30s;
+
+}
+
+.payment-proof img:hover {
+
+    transform: scale(1.02);
+
+}
+
+.payment-proof a {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+.payment-proof a:hover {
+
+    text-decoration: underline;
+
+}
+
+/* ==========================================
+   Pie
+========================================== */
+
+.payment-status-footer {
+
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes paymentStatusFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .payment-status-card {
+
+        padding: 25px;
+
+    }
+
+    .payment-status-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .payment-status-card {
+
+        padding: 20px;
+
+    }
+
+    .payment-status-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .payment-status-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .payment-status-footer {
+
+        flex-direction: column;
+
+    }
+
+    .payment-status-footer button {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .payment-status-card {
+
+        padding: 16px;
+
+    }
+
+    .payment-status-icon {
+
+        width: 70px;
+
+        height: 70px;
+
+        font-size: 36px;
+
+    }
+
+    .payment-status-header h2 {
+
+        font-size: 22px;
+
+    }
+
+    .status-item {
+
+        padding: 16px;
+
+    }
+
+    .status-item strong {
+
+        font-size: 16px;
+
+    }
+
+}

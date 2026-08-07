@@ -1,0 +1,403 @@
+/* ==========================================
+   HOME - GLASSMORPHIC NEON UI (BLUE TONALITY)
+========================================== */
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    /* Fondo 100% Azul continuo: Degradado entre azul marino y azul medio */
+    background: linear-gradient(180deg, #0f172a 0%, #1e3a8a 40%, #0d2563 70%, #0a1931 100%);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 900px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+}
+
+.hero h2 span {
+    color: #facc15;
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #e2e8f0;
+}
+
+.hero ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 45px;
+    padding: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   BOTONES 3D INTERACTIVOS
+========================================== */
+
+.btn-primary {
+    background: linear-gradient(180deg, #38bdf8 0%, #2563eb 100%);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: 1px solid #38bdf8;
+    box-shadow: 0 5px 0 #1d4ed8, 
+                0 0 20px rgba(56, 189, 248, 0.5);
+    transition: all 0.15s ease;
+    display: inline-block;
+    position: relative;
+    top: 0;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(180deg, #7dd3fc 0%, #38bdf8 100%);
+    box-shadow: 0 5px 0 #1d4ed8, 
+                0 0 30px rgba(56, 189, 248, 0.8);
+    color: #fff;
+}
+
+.btn-primary:active {
+    top: 3px;
+    box-shadow: 0 2px 0 #1d4ed8, 
+                0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(30, 58, 138, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 0 rgba(15, 23, 42, 0.4), 
+                0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.15s ease;
+    display: inline-block;
+    position: relative;
+    top: 0;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e3a8a;
+    border-color: #ffffff;
+    box-shadow: 0 5px 0 #93c5fd, 
+                0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+.btn-secondary:active {
+    top: 3px;
+    box-shadow: 0 2px 0 #93c5fd;
+}
+
+/* ==========================================
+   LISTA DE BENEFICIOS (AZUL CRISTAL)
+========================================== */
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #f1f5f9;
+    background: rgba(30, 58, 138, 0.35);
+    backdrop-filter: blur(12px);
+    padding: 14px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.3);
+    transition: all 0.3s ease;
+}
+
+.benefits-list li:hover {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    transform: translateX(5px);
+}
+
+.benefit-icon {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.2);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.benefits-list li:hover .benefit-icon {
+    transform: rotate(10deg) scale(1.15);
+    background: #ffd700;
+    color: #0f172a;
+    box-shadow: 0 0 20px #ffd700;
+}
+
+.benefits-list strong {
+    color: #ffd700;
+    font-size: 19px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* ==========================================
+   SECCIONES Y TARJETAS NEÓN DE CRISTAL AZUL
+========================================== */
+
+.info,
+.prizes,
+.home-footer {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.info h2,
+.prizes h2,
+.home-footer h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+/* CARDS GLASSMORPHISM EN TONO AZUL */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: rgba(23, 42, 84, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 35px 25px;
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 10px 30px rgba(10, 25, 49, 0.5),
+                inset 0 0 15px rgba(56, 189, 248, 0.15);
+    color: #ffffff;
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4),
+                inset 0 0 25px rgba(56, 189, 248, 0.3);
+}
+
+.card h3 {
+    margin: 20px 0 10px 0;
+    font-size: 1.4rem;
+    color: #38bdf8;
+}
+
+.card p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ICONOS DENTRO DE TARJETAS */
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD700, #F39C12);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    transition: 0.4s;
+}
+
+.info-icon {
+    font-size: 36px;
+    color: #0d1a2d;
+}
+
+.card:hover .icon-circle {
+    transform: translateY(-8px) scale(1.12);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+}
+
+/* ==========================================
+   PREMIOS (Prizes Grid en Cristal Azul)
+========================================== */
+
+.prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.prizes-grid div {
+    background: rgba(30, 58, 138, 0.5);
+    backdrop-filter: blur(12px);
+    color: #38bdf8;
+    padding: 30px 20px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 8px 20px rgba(10, 25, 49, 0.4);
+    transition: all 0.3s ease;
+}
+
+.prizes-grid div:hover {
+    transform: scale(1.05) translateY(-5px);
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    border-color: #38bdf8;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+}
+
+/* ==========================================
+   ANIMACIONES
+========================================== */
+
+.spin-icon {
+    animation: spinDice 4s linear infinite;
+}
+
+@keyframes spinDice {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.trophy-icon {
+    animation: trophyGlow 2s ease-in-out infinite;
+}
+
+@keyframes trophyGlow {
+    0% { transform: scale(1); color: #0d1a2d; }
+    50% { transform: scale(1.2); color: #ffffff; }
+    100% { transform: scale(1); color: #0d1a2d; }
+}
+
+/* ==========================================
+   FOOTER Y BOTÓN WHATSAPP
+========================================== */
+
+.home-footer {
+    padding-bottom: 80px;
+}
+
+.home-footer p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
+
+.whatsapp-float {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 22px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+    transition: .35s;
+    animation: whatsappPulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    background: #1fb955;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
+    color: #fff;
+}
+
+@keyframes whatsappPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.60); }
+    70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .hero h1 { font-size: 2.8rem; }
+    .hero h2 { font-size: 1.5rem; }
+    .hero-buttons { flex-direction: column; }
+    .whatsapp-float {
+        right: 18px;
+        bottom: 18px;
+        padding: 15px;
+        border-radius: 50%;
+    }
+    .whatsapp-float span { display: none; }
+}

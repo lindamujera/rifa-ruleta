@@ -1,0 +1,99 @@
+/* ==========================================
+   TARJETAS
+========================================== */
+
+.card{
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:var(--border-radius-lg);
+
+    padding:30px;
+
+    box-shadow:var(--shadow-md);
+
+    transition:all var(--transition);
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.card-header{
+
+    margin-bottom:20px;
+
+}
+
+.card-title{
+
+    font-size:var(--font-xl);
+
+    color:var(--primary);
+
+    font-weight:700;
+
+}
+
+.card-subtitle{
+
+    color:var(--text-light);
+
+    margin-top:8px;
+
+}
+
+/* ==========================================
+   CARD BODY
+========================================== */
+
+.card-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ==========================================
+   CARD FOOTER
+========================================== */
+
+.card-footer{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+}
+
+/* ==========================================
+   CARD GLASS
+========================================== */
+
+.card-glass{
+
+    background:rgba(255,255,255,.25);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.4);
+
+}

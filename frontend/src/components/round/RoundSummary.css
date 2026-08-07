@@ -1,0 +1,375 @@
+/* ==========================================
+   src/components/round/RoundSummary.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.round-summary {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+
+    animation: summaryFade .4s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.summary-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.summary-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.summary-header span {
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 22px;
+
+}
+
+/* ==========================================
+   Tarjetas
+========================================== */
+
+.summary-card {
+
+    background: linear-gradient(
+
+        180deg,
+
+        #ffffff,
+
+        #f8fafc
+
+    );
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    text-align: center;
+
+    transition: all .30s ease;
+
+}
+
+.summary-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 15px 35px rgba(37,99,235,.15);
+
+    border-color: #2563eb;
+
+}
+
+.summary-card h4 {
+
+    margin: 0 0 15px;
+
+    color: #475569;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+.summary-card strong {
+
+    display: block;
+
+    color: #0f172a;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+.summary-card small {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+/* ==========================================
+   Tarjetas especiales
+========================================== */
+
+.summary-card.success {
+
+    background: linear-gradient(
+
+        135deg,
+
+        #dcfce7,
+
+        #bbf7d0
+
+    );
+
+    border-color: #22c55e;
+
+}
+
+.summary-card.success strong {
+
+    color: #15803d;
+
+}
+
+.summary-card.warning {
+
+    background: linear-gradient(
+
+        135deg,
+
+        #fef3c7,
+
+        #fde68a
+
+    );
+
+    border-color: #f59e0b;
+
+}
+
+.summary-card.warning strong {
+
+    color: #b45309;
+
+}
+
+/* ==========================================
+   Pie
+========================================== */
+
+.summary-footer {
+
+    margin-top: 35px;
+
+}
+
+.summary-message {
+
+    padding: 20px;
+
+    background: #eff6ff;
+
+    border-left: 6px solid #2563eb;
+
+    border-radius: 12px;
+
+    color: #1e3a8a;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+}
+
+.summary-message strong {
+
+    color: #0f172a;
+
+}
+
+.summary-message.success {
+
+    background: #dcfce7;
+
+    border-left-color: #16a34a;
+
+    color: #166534;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes summaryFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .round-summary {
+
+        padding: 25px;
+
+    }
+
+    .summary-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .round-summary {
+
+        padding: 20px;
+
+    }
+
+    .summary-header {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+    .summary-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .summary-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .summary-card strong {
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .round-summary {
+
+        padding: 15px;
+
+    }
+
+    .summary-header h2 {
+
+        font-size: 22px;
+
+    }
+
+    .summary-card {
+
+        padding: 18px;
+
+    }
+
+    .summary-card strong {
+
+        font-size: 22px;
+
+    }
+
+    .summary-message {
+
+        font-size: 14px;
+
+    }
+
+}

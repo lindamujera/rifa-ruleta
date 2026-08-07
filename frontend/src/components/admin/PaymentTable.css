@@ -1,0 +1,341 @@
+/* ==========================================
+   src/components/admin/PaymentTable.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.payment-table-container {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+
+    animation: paymentTableFade .35s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.payment-table-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.payment-table-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Tabla
+========================================== */
+
+.payment-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+}
+
+/* ==========================================
+   Cabecera
+========================================== */
+
+.payment-table thead {
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
+
+}
+
+.payment-table th {
+
+    padding: 18px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.payment-table tbody tr {
+
+    transition: .25s;
+
+}
+
+.payment-table tbody tr:nth-child(even) {
+
+    background: #f8fafc;
+
+}
+
+.payment-table tbody tr:hover {
+
+    background: #eff6ff;
+
+}
+
+/* ==========================================
+   Celdas
+========================================== */
+
+.payment-table td {
+
+    padding: 16px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #334155;
+
+    font-size: 14px;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.payment-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 110px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+.payment-status.approved {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.payment-status.pending {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.payment-status.rejected {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+.payment-status.processing {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.payment-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+.btn-approve {
+
+    background: #16a34a !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-approve:hover {
+
+    background: #15803d !important;
+
+}
+
+.btn-reject {
+
+    background: #dc2626 !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-reject:hover {
+
+    background: #b91c1c !important;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes paymentTableFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .payment-table-container {
+
+        overflow-x: auto;
+
+    }
+
+    .payment-table {
+
+        min-width: 900px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .payment-table-container {
+
+        padding: 20px;
+
+    }
+
+    .payment-table-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+    .payment-table-header h2 {
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .payment-table-container {
+
+        padding: 15px;
+
+    }
+
+    .payment-table-header h2 {
+
+        font-size: 20px;
+
+    }
+
+}

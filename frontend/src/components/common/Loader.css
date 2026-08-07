@@ -1,0 +1,151 @@
+/* ==========================================
+   src/components/common/Loader.css
+========================================== */
+
+/* Fondo */
+
+.loader-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 200px;
+
+}
+
+/* Pantalla completa */
+
+.loader-container.fullscreen {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    z-index: 9999;
+
+}
+
+/* Contenedor */
+
+.loader-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+/* Spinner */
+
+.loader-spinner {
+
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 50%;
+
+    border: 8px solid #e5e7eb;
+
+    border-top: 8px solid #2563eb;
+
+    animation: loaderSpin 0.8s linear infinite;
+
+    box-shadow: 0 8px 20px rgba(37, 99, 235, .20);
+
+}
+
+/* Texto */
+
+.loader-text {
+
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    color: #1f2937;
+
+    text-align: center;
+
+    letter-spacing: .5px;
+
+}
+
+/* Animación */
+
+@keyframes loaderSpin {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+/* Responsive */
+
+@media (max-width:768px) {
+
+    .loader-spinner {
+
+        width: 55px;
+
+        height: 55px;
+
+        border-width: 6px;
+
+    }
+
+    .loader-text {
+
+        font-size: 16px;
+
+    }
+
+}
+
+@media (max-width:480px) {
+
+    .loader-spinner {
+
+        width: 45px;
+
+        height: 45px;
+
+        border-width: 5px;
+
+    }
+
+    .loader-text {
+
+        font-size: 15px;
+
+    }
+
+}

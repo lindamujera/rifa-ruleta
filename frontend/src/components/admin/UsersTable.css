@@ -1,0 +1,359 @@
+/* ==========================================
+   src/components/admin/UsersTable.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.users-table-container {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+
+    animation: usersTableFade .35s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.users-table-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.users-table-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Buscador
+========================================== */
+
+.users-search {
+
+    width: 320px;
+
+    padding: 12px 18px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: .25s;
+
+}
+
+.users-search:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+/* ==========================================
+   Tabla
+========================================== */
+
+.users-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+}
+
+/* ==========================================
+   Cabecera
+========================================== */
+
+.users-table thead {
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
+
+}
+
+.users-table th {
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.users-table tbody tr {
+
+    transition: .25s;
+
+}
+
+.users-table tbody tr:nth-child(even) {
+
+    background: #f8fafc;
+
+}
+
+.users-table tbody tr:hover {
+
+    background: #eff6ff;
+
+}
+
+/* ==========================================
+   Celdas
+========================================== */
+
+.users-table td {
+
+    padding: 15px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #334155;
+
+    font-size: 14px;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.user-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 110px;
+
+    padding: 8px 15px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+.user-status.active {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.user-status.inactive {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.btn-enable {
+
+    background: #16a34a !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-enable:hover {
+
+    background: #15803d !important;
+
+}
+
+.btn-disable {
+
+    background: #dc2626 !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-disable:hover {
+
+    background: #b91c1c !important;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes usersTableFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .users-table-container {
+
+        overflow-x: auto;
+
+    }
+
+    .users-table {
+
+        min-width: 850px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .users-table-container {
+
+        padding: 20px;
+
+    }
+
+    .users-table-header {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .users-table-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .users-search {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .users-table-container {
+
+        padding: 15px;
+
+    }
+
+    .users-table-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .users-search {
+
+        font-size: 14px;
+
+        padding: 10px 15px;
+
+    }
+
+}

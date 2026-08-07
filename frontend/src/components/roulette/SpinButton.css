@@ -1,0 +1,301 @@
+/* ==========================================
+   src/components/roulette/SpinButton.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.spin-button-container {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+/* ==========================================
+   Contador de Giros
+========================================== */
+
+.spin-counter {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border-radius: 50px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+}
+
+.spin-counter strong {
+
+    font-size: 20px;
+
+    color: #0f172a;
+
+}
+
+/* ==========================================
+   Botón
+========================================== */
+
+.spin-button {
+
+    width: 100%;
+
+    max-width: 320px;
+
+    min-height: 60px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    border-radius: 14px;
+
+    transition: all .30s ease;
+
+}
+
+/* ==========================================
+   Hover
+========================================== */
+
+.spin-button:hover:not(:disabled) {
+
+    transform: translateY(-3px);
+
+}
+
+/* ==========================================
+   Active
+========================================== */
+
+.spin-button:active:not(:disabled) {
+
+    transform: scale(.98);
+
+}
+
+/* ==========================================
+   Deshabilitado
+========================================== */
+
+.spin-button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .70;
+
+}
+
+/* ==========================================
+   Spinner
+========================================== */
+
+.spin-button .spinner {
+
+    width: 20px;
+
+    height: 20px;
+
+}
+
+/* ==========================================
+   Mensaje
+========================================== */
+
+.spin-message {
+
+    margin: 0;
+
+    text-align: center;
+
+    color: #dc2626;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Estado Activo
+========================================== */
+
+.spin-button-container.active {
+
+    border: 2px solid #22c55e;
+
+}
+
+/* ==========================================
+   Estado Sin Giros
+========================================== */
+
+.spin-button-container.disabled {
+
+    opacity: .8;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.spin-button-container {
+
+    animation: spinButtonFade .35s ease;
+
+}
+
+@keyframes spinButtonFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .spin-button-container {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .spin-button-container {
+
+        padding: 20px;
+
+    }
+
+    .spin-counter {
+
+        width: 100%;
+
+        justify-content: center;
+
+        font-size: 15px;
+
+    }
+
+    .spin-button {
+
+        max-width: 100%;
+
+        min-height: 55px;
+
+        font-size: 17px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .spin-button-container {
+
+        padding: 18px;
+
+        gap: 15px;
+
+    }
+
+    .spin-counter {
+
+        padding: 10px 15px;
+
+        font-size: 14px;
+
+    }
+
+    .spin-counter strong {
+
+        font-size: 18px;
+
+    }
+
+    .spin-button {
+
+        min-height: 52px;
+
+        font-size: 16px;
+
+    }
+
+    .spin-message {
+
+        font-size: 14px;
+
+    }
+
+}

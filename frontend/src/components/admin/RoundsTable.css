@@ -1,0 +1,363 @@
+/* ==========================================
+   src/components/admin/RoundsTable.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.rounds-table-container {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+
+    animation: roundsFade .35s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.rounds-table-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.rounds-table-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Tabla
+========================================== */
+
+.rounds-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+}
+
+/* ==========================================
+   Cabecera
+========================================== */
+
+.rounds-table thead {
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
+
+}
+
+.rounds-table th {
+
+    padding: 18px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.rounds-table tbody tr {
+
+    transition: .25s;
+
+}
+
+.rounds-table tbody tr:nth-child(even) {
+
+    background: #f8fafc;
+
+}
+
+.rounds-table tbody tr:hover {
+
+    background: #eff6ff;
+
+}
+
+/* ==========================================
+   Celdas
+========================================== */
+
+.rounds-table td {
+
+    padding: 16px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #334155;
+
+    font-size: 14px;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.round-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 110px;
+
+    padding: 8px 15px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+.round-status.open {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.round-status.closed {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+.round-status.finished {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+.round-status.pending {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+/* ==========================================
+   Acciones
+========================================== */
+
+.round-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.btn-open {
+
+    background: #16a34a !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-open:hover {
+
+    background: #15803d !important;
+
+}
+
+.btn-close {
+
+    background: #dc2626 !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-close:hover {
+
+    background: #b91c1c !important;
+
+}
+
+.btn-draw {
+
+    background: #f59e0b !important;
+
+    color: #ffffff !important;
+
+    border: none;
+
+}
+
+.btn-draw:hover {
+
+    background: #d97706 !important;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes roundsFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .rounds-table-container {
+
+        overflow-x: auto;
+
+    }
+
+    .rounds-table {
+
+        min-width: 1100px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .rounds-table-container {
+
+        padding: 20px;
+
+    }
+
+    .rounds-table-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+    .rounds-table-header h2 {
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .rounds-table-container {
+
+        padding: 15px;
+
+    }
+
+    .rounds-table-header h2 {
+
+        font-size: 20px;
+
+    }
+
+}

@@ -1,0 +1,407 @@
+/* ==========================================
+   src/components/dashboard/QuickActions.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.quick-actions {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+    animation: quickActionsFade .4s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.quick-actions-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+.quick-actions-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.quick-actions-header p {
+
+    margin-top: 12px;
+
+    color: #64748b;
+
+    font-size: 16px;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.quick-actions-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 25px;
+
+}
+
+/* ==========================================
+   Tarjeta
+========================================== */
+
+.quick-action-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    transition: all .30s ease;
+
+    color: #ffffff;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.quick-action-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 18px 35px rgba(0,0,0,.18);
+
+}
+
+/* ==========================================
+   Brillo
+========================================== */
+
+.quick-action-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(255,255,255,.15);
+
+    transform: skewX(-25deg);
+
+    transition: .7s;
+
+}
+
+.quick-action-card:hover::before {
+
+    left: 120%;
+
+}
+
+/* ==========================================
+   Icono
+========================================== */
+
+.quick-action-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.20);
+
+    font-size: 34px;
+
+    flex-shrink: 0;
+
+}
+
+/* ==========================================
+   Contenido
+========================================== */
+
+.quick-action-content {
+
+    flex: 1;
+
+}
+
+.quick-action-content h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+.quick-action-content p {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    opacity: .95;
+
+}
+
+/* ==========================================
+   Colores
+========================================== */
+
+.quick-action-card.blue {
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+}
+
+.quick-action-card.green {
+
+    background: linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+
+}
+
+.quick-action-card.orange {
+
+    background: linear-gradient(
+        135deg,
+        #ea580c,
+        #fb923c
+    );
+
+}
+
+.quick-action-card.purple {
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #8b5cf6
+    );
+
+}
+
+.quick-action-card.red {
+
+    background: linear-gradient(
+        135deg,
+        #dc2626,
+        #ef4444
+    );
+
+}
+
+.quick-action-card.dark {
+
+    background: linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
+    );
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes quickActionsFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .quick-actions {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .quick-actions {
+
+        padding: 20px;
+
+    }
+
+    .quick-actions-header h2 {
+
+        font-size: 26px;
+
+    }
+
+    .quick-actions-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .quick-action-card {
+
+        padding: 20px;
+
+    }
+
+    .quick-action-icon {
+
+        width: 60px;
+
+        height: 60px;
+
+        font-size: 28px;
+
+    }
+
+    .quick-action-content h3 {
+
+        font-size: 20px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .quick-actions {
+
+        padding: 18px;
+
+    }
+
+    .quick-actions-header h2 {
+
+        font-size: 22px;
+
+    }
+
+    .quick-actions-header p {
+
+        font-size: 14px;
+
+    }
+
+    .quick-action-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+    .quick-action-icon {
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 24px;
+
+    }
+
+    .quick-action-content h3 {
+
+        font-size: 18px;
+
+    }
+
+    .quick-action-content p {
+
+        font-size: 13px;
+
+    }
+
+}

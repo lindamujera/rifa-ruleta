@@ -1,0 +1,337 @@
+/* ==========================================
+   src/components/ticket/TicketDetails.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.ticket-details {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    padding: 10px;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.ticket-details-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.ticket-details-header h2 {
+
+    margin: 0;
+
+    color: #1e293b;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Estado del Ticket
+========================================== */
+
+.ticket-badge {
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+/* Activo */
+
+.ticket-badge.activo {
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+}
+
+/* Pendiente */
+
+.ticket-badge.pendiente {
+
+    background: #fef9c3;
+
+    color: #ca8a04;
+
+}
+
+/* Ganador */
+
+.ticket-badge.ganador {
+
+    background: #fde68a;
+
+    color: #b45309;
+
+}
+
+/* Usado */
+
+.ticket-badge.usado {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+/* Cancelado */
+
+.ticket-badge.cancelado {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+/* ==========================================
+   Secciones
+========================================== */
+
+.ticket-section {
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.04);
+
+}
+
+.ticket-section h3 {
+
+    margin: 0 0 20px;
+
+    color: #2563eb;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Grid de Información
+========================================== */
+
+.ticket-info-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+
+}
+
+.ticket-info-grid div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+
+    border: 1px solid #e2e8f0;
+
+}
+
+.ticket-info-grid label {
+
+    font-size: 13px;
+
+    color: #64748b;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+}
+
+.ticket-info-grid span {
+
+    font-size: 16px;
+
+    color: #0f172a;
+
+    font-weight: 700;
+
+    word-break: break-word;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.ticket-details-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-top: 10px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.ticket-details {
+
+    animation: ticketDetailsFade .35s ease;
+
+}
+
+@keyframes ticketDetailsFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .ticket-info-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .ticket-details-header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+
+    }
+
+    .ticket-details-header h2 {
+
+        font-size: 22px;
+
+    }
+
+    .ticket-info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .ticket-section {
+
+        padding: 18px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .ticket-details {
+
+        gap: 18px;
+
+    }
+
+    .ticket-details-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .ticket-section h3 {
+
+        font-size: 18px;
+
+    }
+
+    .ticket-info-grid span {
+
+        font-size: 15px;
+
+    }
+
+}

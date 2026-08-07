@@ -1,0 +1,203 @@
+/* ==========================================
+   src/components/common/Card.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.card {
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    border: 1px solid #e5e7eb;
+
+    overflow: hidden;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+    transition: all .30s ease;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+/* ==========================================
+   Hover
+========================================== */
+
+.card-hover:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+}
+
+/* ==========================================
+   Padding
+========================================== */
+
+.card-padding {
+
+    padding: 24px;
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.card-header {
+
+    margin-bottom: 20px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+/* ==========================================
+   Título
+========================================== */
+
+.card-title {
+
+    margin: 0;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #1f2937;
+
+}
+
+/* ==========================================
+   Subtítulo
+========================================== */
+
+.card-subtitle {
+
+    margin-top: 8px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Body
+========================================== */
+
+.card-body {
+
+    width: 100%;
+
+}
+
+/* ==========================================
+   Footer
+========================================== */
+
+.card-footer {
+
+    margin-top: 24px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e5e7eb;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width:768px){
+
+    .card-padding{
+
+        padding:20px;
+
+    }
+
+    .card-title{
+
+        font-size:22px;
+
+    }
+
+    .card-subtitle{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Mobile
+========================================== */
+
+@media (max-width:480px){
+
+    .card{
+
+        border-radius:12px;
+
+    }
+
+    .card-padding{
+
+        padding:16px;
+
+    }
+
+    .card-header{
+
+        margin-bottom:16px;
+
+        padding-bottom:12px;
+
+    }
+
+    .card-title{
+
+        font-size:20px;
+
+    }
+
+    .card-subtitle{
+
+        font-size:13px;
+
+    }
+
+    .card-footer{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+}

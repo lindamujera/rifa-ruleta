@@ -1,0 +1,295 @@
+/* ==========================================
+   src/components/common/Alert.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.alert {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 18px 20px;
+
+    border-radius: 12px;
+
+    margin: 15px 0;
+
+    border-left: 6px solid;
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+    animation: alertFade .30s ease-in-out;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+}
+
+/* ==========================================
+   Icono
+========================================== */
+
+.alert-icon {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+}
+
+/* ==========================================
+   Contenido
+========================================== */
+
+.alert-content {
+
+    flex: 1;
+
+}
+
+.alert-title {
+
+    margin: 0 0 6px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+}
+
+.alert-message {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Botón cerrar
+========================================== */
+
+.alert-close {
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    color: inherit;
+
+    opacity: .7;
+
+    transition: .2s;
+
+    padding: 0;
+
+    line-height: 1;
+
+}
+
+.alert-close:hover {
+
+    opacity: 1;
+
+    transform: scale(1.15);
+
+}
+
+/* ==========================================
+   SUCCESS
+========================================== */
+
+.alert-success {
+
+    background: #ecfdf5;
+
+    border-left-color: #16a34a;
+
+    color: #166534;
+
+}
+
+.alert-success .alert-icon {
+
+    color: #16a34a;
+
+}
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.alert-error {
+
+    background: #fef2f2;
+
+    border-left-color: #dc2626;
+
+    color: #991b1b;
+
+}
+
+.alert-error .alert-icon {
+
+    color: #dc2626;
+
+}
+
+/* ==========================================
+   WARNING
+========================================== */
+
+.alert-warning {
+
+    background: #fffbeb;
+
+    border-left-color: #d97706;
+
+    color: #92400e;
+
+}
+
+.alert-warning .alert-icon {
+
+    color: #d97706;
+
+}
+
+/* ==========================================
+   INFO
+========================================== */
+
+.alert-info {
+
+    background: #eff6ff;
+
+    border-left-color: #2563eb;
+
+    color: #1e3a8a;
+
+}
+
+.alert-info .alert-icon {
+
+    color: #2563eb;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes alertFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Tablet
+========================================== */
+
+@media (max-width:768px) {
+
+    .alert {
+
+        padding: 16px;
+
+        gap: 12px;
+
+    }
+
+    .alert-title {
+
+        font-size: 16px;
+
+    }
+
+    .alert-message {
+
+        font-size: 14px;
+
+    }
+
+    .alert-icon {
+
+        font-size: 22px;
+
+    }
+
+}
+
+/* ==========================================
+   Móvil
+========================================== */
+
+@media (max-width:480px) {
+
+    .alert {
+
+        flex-direction: row;
+
+        align-items: flex-start;
+
+        padding: 14px;
+
+    }
+
+    .alert-title {
+
+        font-size: 15px;
+
+    }
+
+    .alert-message {
+
+        font-size: 13px;
+
+    }
+
+    .alert-icon {
+
+        font-size: 20px;
+
+    }
+
+    .alert-close {
+
+        font-size: 20px;
+
+    }
+
+}

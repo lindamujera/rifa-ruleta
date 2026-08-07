@@ -1,0 +1,510 @@
+/* ==========================================
+   DASHBOARD - BASE GENERAL
+========================================== */
+
+.dashboard-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================
+   1. HEADER SUPERIOR AZUL
+========================================== */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Sombra 3D suave sin neón encandilante */
+    box-shadow: 0 12px 28px rgba(29, 78, 216, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+}
+
+/* Bienvenida */
+.dashboard-welcome {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.dashboard-welcome h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.dashboard-welcome span {
+    color: #FFD700;
+}
+
+.dashboard-welcome p {
+    margin-top: 8px;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.6;
+}
+
+/* Icono de Bienvenida */
+.welcome-icon {
+    width: 65px;
+    height: 65px;
+    color: #FFD700;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: waveHand 2s infinite;
+}
+
+/* Info Usuario (Estilo Cristal Limpio) */
+.dashboard-user-info {
+    min-width: 280px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-user-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+.dashboard-user-info strong {
+    color: #FFD700;
+}
+
+.info-small-icon {
+    font-size: 18px;
+    color: #FFD700;
+}
+
+/* Botón Cerrar Sesión Rojo 3D */
+.logout-button {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 4px 0 #991b1b, 0 6px 12px rgba(239, 68, 68, 0.2);
+    transition: all 0.15s ease;
+    position: relative;
+    top: 0;
+}
+
+.logout-button:hover {
+    background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
+    box-shadow: 0 4px 0 #991b1b, 0 8px 16px rgba(239, 68, 68, 0.3);
+}
+
+.logout-button:active {
+    top: 2px;
+    box-shadow: 0 2px 0 #991b1b;
+}
+
+/* ==========================================
+   2. BANNER RULETA (ARCOÍRIS 3D ELEGANTE)
+========================================== */
+
+.dashboard-preview {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #f97316);
+    padding: 32px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    align-items: center;
+}
+
+.preview-info h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+
+.preview-info p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.preview-info strong {
+    color: #f8fafc;
+    margin-left: 8px;
+}
+
+/* Botón Ver Ruleta 3D */
+.preview-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 30px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+    border: 1px solid #7dd3fc;
+    box-shadow: 0 4px 0 #0369a1, 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.15s ease;
+    position: relative;
+    top: 0;
+}
+
+.preview-button:hover {
+    background: linear-gradient(180deg, #7dd3fc 0%, #38bdf8 100%);
+    box-shadow: 0 4px 0 #0369a1, 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.preview-button:active {
+    top: 2px;
+    box-shadow: 0 2px 0 #0369a1;
+}
+
+/* Ruleta Multicolor 3D */
+.preview-wheel {
+    display: flex;
+    justify-content: center;
+}
+
+.rainbow-wheel {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #f43f5e 0 12.5%,
+        #fb7185 12.5% 25%,
+        #f59e0b 25% 37.5%,
+        #84cc16 37.5% 50%,
+        #22d3ee 50% 62.5%,
+        #818cf8 62.5% 75%,
+        #a855f7 75% 87.5%,
+        #ec4899 87.5% 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.rainbow-wheel::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    background: #111827;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.rainbow-center {
+    position: relative;
+    z-index: 1;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #facc15 0%, #f97316 100%);
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0 #c2410c, 0 6px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rainbow-center:hover {
+    transform: scale(1.04);
+}
+
+/* ==========================================
+   3. GRID & TARJETAS DE MÉTRICAS
+========================================== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+.dashboard-card span {
+    font-size: 50px;
+}
+
+.dashboard-card h3 {
+    margin-top: 15px;
+    color: #666666;
+}
+
+.dashboard-card h2 {
+    margin: 15px 0;
+    color: #2563eb;
+}
+
+/* ==========================================
+   4. ESTADOS Y RONDAS
+========================================== */
+
+.dashboard-status,
+.dashboard-round,
+.dashboard-tickets {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-status h2,
+.dashboard-round h2,
+.dashboard-tickets h2 {
+    margin-bottom: 25px;
+}
+
+.status-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.status-card div {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 6px solid #2563eb;
+    border-top: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.round-card {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.round-card div {
+    flex: 1 1 0;
+    min-width: 220px;
+    background: #eef4ff;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.round-card h4 {
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.round-card p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ==========================================
+   5. ACCIONES RÁPIDAS
+========================================== */
+
+.dashboard-actions {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+.dashboard-actions h2 {
+    margin-bottom: 20px;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.action-button {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    background: #f8fafc;
+    padding: 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #111827;
+    border: 1px solid #e2e8f0;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.action-button:hover {
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.action-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #facc15, #f97316);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.25);
+}
+
+.action-button strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.action-button span {
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+/* ==========================================
+   6. TICKETS
+========================================== */
+
+.dashboard-tickets {
+    margin-top: 30px;
+}
+
+.tickets-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+}
+
+.ticket-badge {
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #34d399, #60a5fa);
+    color: #111827;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.ticket-badge:hover {
+    transform: translateY(-2px);
+}
+
+.ticket-badge span {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.ticket-badge p {
+    font-size: 0.95rem;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+/* ==========================================
+   7. ANIMACIONES & RESPONSIVE
+========================================== */
+
+@keyframes waveHand {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(18deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(18deg); }
+    80% { transform: rotate(-8deg); }
+}
+
+@media (max-width: 900px) {
+    .dashboard-preview {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .preview-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .dashboard-welcome {
+        flex-direction: column;
+    }
+    .dashboard-user-info {
+        width: 100%;
+    }
+    .dashboard-grid,
+    .status-card {
+        grid-template-columns: 1fr;
+    }
+    .round-card {
+        flex-direction: column;
+    }
+}

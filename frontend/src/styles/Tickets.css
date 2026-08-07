@@ -1,0 +1,198 @@
+/* ==========================================
+   ESTILOS 3D Y LLAMATIVOS PARA EL SELECTOR
+   ========================================== */
+
+/* Fondo general y contenedor principal */
+.selector-container {
+    max-width: 620px;
+    margin: 30px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #515157, #67676d);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(189, 185, 185, 0.5), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Título e instrucciones */
+.selector-container h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #ff007f, #7928ca, #00dfd8);
+    background-clip: text;                  /* Propiedad estándar */
+    -webkit-background-clip: text;          /* Para compatibilidad WebKit */
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitulo {
+    color: #a0aec0;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.subtitulo strong {
+    color: #00f2fe;
+}
+
+/* Cuadrícula de números */
+.numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ------------------------------------------
+   BOTONES EN EFECTO 3D (DISPONIBLES)
+   ------------------------------------------ */
+.number-btn {
+    height: 48px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    /* Sombra para el efecto de relieve 3D */
+    box-shadow: 0 5px 0px #1e40af, 
+                0 8px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s ease;
+    position: relative;
+    top: 0;
+}
+
+/* Hover: Se levanta ligeramente */
+.number-btn:hover:not(:disabled) {
+    background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+    top: -2px;
+    box-shadow: 0 7px 0px #1e40af, 
+                0 12px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Active (al hacer clic): Efecto de botón presionado */
+.number-btn:active:not(:disabled) {
+    top: 4px;
+    box-shadow: 0 1px 0px #1e40af, 
+                0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ------------------------------------------
+   ESTADO: NUMERO OCUPADO (DESHABILITADO)
+   ------------------------------------------ */
+.number-btn.occupied {
+    background: #2a2a3b;
+    color: #52525b;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+    border: 1px solid #3f3f46;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.6;
+    top: 0;
+}
+
+/* ------------------------------------------
+   ESTADO: NUMERO SELECCIONADO (RESALTADO NEÓN)
+   ------------------------------------------ */
+.number-btn.selected {
+    background: linear-gradient(180deg, #ff007f 0%, #d946ef 100%);
+    color: #ffffff;
+    box-shadow: 0 5px 0px #9d174d, 
+                0 0 20px rgba(255, 0, 127, 0.8);
+    animation: pulse3d 1.5s infinite alternate;
+}
+
+/* ------------------------------------------
+   SECCIÓN INFERIOR Y BOTÓN DE CONFIRMACIÓN
+   ------------------------------------------ */
+.footer-acciones {
+    margin-top: 20px;
+}
+
+.info-seleccion {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.info-seleccion strong {
+    color: #00ff88;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Botón grande de confirmar (Efecto Verde Neón 3D) */
+.btn-confirmar {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 0px #065f46, 
+                0 10px 25px rgba(16, 185, 129, 0.4);
+    transition: all 0.15s ease;
+    position: relative;
+    top: 0;
+}
+
+.btn-confirmar:hover:not(:disabled) {
+    background: linear-gradient(180deg, #34d399 0%, #059669 100%);
+    top: -2px;
+    box-shadow: 0 8px 0px #065f46, 
+                0 15px 30px rgba(16, 185, 129, 0.6);
+}
+
+.btn-confirmar:active:not(:disabled) {
+    top: 4px;
+    box-shadow: 0 2px 0px #065f46, 
+                0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-confirmar:disabled {
+    background: #334155;
+    color: #64748b;
+    box-shadow: none;
+    cursor: not-allowed;
+    top: 0;
+}
+
+/* Alerta de éxito */
+.alerta-exito {
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid #10b981;
+    color: #34d399;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+    .numbers-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+    }
+    
+    .number-btn {
+        height: 42px;
+        font-size: 0.95rem;
+    }
+}

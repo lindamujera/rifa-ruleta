@@ -1,0 +1,163 @@
+/* ==========================================
+   src/components/layout/DashboardLayout.css
+========================================== */
+
+/* ==========================================
+   Contenedor principal
+========================================== */
+
+.dashboard-layout {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: #f5f7fb;
+
+}
+
+/* ==========================================
+   Contenido principal
+========================================== */
+
+.dashboard-content {
+
+    flex: 1;
+
+    display: flex;
+
+    width: 100%;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
+
+}
+
+/* ==========================================
+   Área principal
+========================================== */
+
+.dashboard-main {
+
+    flex: 1;
+
+    padding: 30px;
+
+    overflow-x: auto;
+
+    overflow-y: auto;
+
+    min-height: calc(100vh - 150px);
+
+}
+
+/* ==========================================
+   Scroll personalizado
+========================================== */
+
+.dashboard-main::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+.dashboard-main::-webkit-scrollbar-track {
+
+    background: #eef2f7;
+
+}
+
+.dashboard-main::-webkit-scrollbar-thumb {
+
+    background: #cbd5e1;
+
+    border-radius: 20px;
+
+}
+
+.dashboard-main::-webkit-scrollbar-thumb:hover {
+
+    background: #94a3b8;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.dashboard-main {
+
+    animation: fadeDashboard .35s ease;
+
+}
+
+@keyframes fadeDashboard {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .dashboard-content {
+
+        flex-direction: column;
+
+    }
+
+    .dashboard-main {
+
+        padding: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media (max-width: 768px) {
+
+    .dashboard-main {
+
+        padding: 18px;
+
+    }
+
+}
+
+/* ==========================================
+   Mobile pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .dashboard-main {
+
+        padding: 15px;
+
+    }
+
+}

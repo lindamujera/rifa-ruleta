@@ -1,0 +1,317 @@
+/* ==========================================
+   src/components/ticket/TicketInfo.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.ticket-info {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.ticket-info-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 2px solid #e2e8f0;
+
+}
+
+.ticket-info-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.ticket-info-header p {
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+}
+
+/* ==========================================
+   Número del Ticket
+========================================== */
+
+.ticket-info-number {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+/* ==========================================
+   Grid Información
+========================================== */
+
+.ticket-info-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+/* ==========================================
+   Tarjetas
+========================================== */
+
+.ticket-info-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    transition: all .30s ease;
+
+}
+
+.ticket-info-item:hover {
+
+    transform: translateY(-3px);
+
+    background: #ffffff;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.ticket-info-item span {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+.ticket-info-item strong {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+    word-break: break-word;
+
+}
+
+/* ==========================================
+   Código QR
+========================================== */
+
+.ticket-info-qr {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding-top: 20px;
+
+    border-top: 2px solid #e2e8f0;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.ticket-info {
+
+    animation: ticketInfoFade .35s ease;
+
+}
+
+@keyframes ticketInfoFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .ticket-info {
+
+        padding: 25px;
+
+    }
+
+    .ticket-info-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .ticket-info {
+
+        padding: 20px;
+
+    }
+
+    .ticket-info-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .ticket-info-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .ticket-info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .ticket-info-item strong {
+
+        font-size: 17px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .ticket-info {
+
+        padding: 18px;
+
+        gap: 20px;
+
+    }
+
+    .ticket-info-header h2 {
+
+        font-size: 21px;
+
+    }
+
+    .ticket-info-header p {
+
+        font-size: 14px;
+
+    }
+
+    .ticket-info-item {
+
+        padding: 16px;
+
+    }
+
+    .ticket-info-item span {
+
+        font-size: 12px;
+
+    }
+
+    .ticket-info-item strong {
+
+        font-size: 16px;
+
+    }
+
+    .ticket-info-qr {
+
+        padding-top: 15px;
+
+    }
+
+}

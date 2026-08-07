@@ -1,0 +1,315 @@
+/* ==========================================
+   src/components/payment/PaymentForm.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.payment-form-card {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+
+    animation: paymentFormFade .4s ease;
+
+}
+
+.payment-form-card h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+.payment-form-card p {
+
+    margin: 15px 0 30px;
+
+    color: #64748b;
+
+    text-align: center;
+
+    line-height: 1.6;
+
+}
+
+/* ==========================================
+   Formulario
+========================================== */
+
+.payment-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+/* ==========================================
+   Grupo
+========================================== */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.form-group label {
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   Inputs
+========================================== */
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    color: #0f172a;
+
+    background: #ffffff;
+
+    transition: all .25s ease;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+
+}
+
+.form-group textarea {
+
+    resize: vertical;
+
+    min-height: 120px;
+
+}
+
+/* ==========================================
+   Placeholder
+========================================== */
+
+.form-group input::placeholder,
+
+.form-group textarea::placeholder {
+
+    color: #94a3b8;
+
+}
+
+/* ==========================================
+   Valor fijo
+========================================== */
+
+.form-group input[type="number"] {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #15803d;
+
+}
+
+/* ==========================================
+   Botones
+========================================== */
+
+.payment-form-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+.payment-form-actions button {
+
+    min-width: 180px;
+
+}
+
+/* ==========================================
+   Estados
+========================================== */
+
+.form-group input:disabled,
+
+.form-group select:disabled,
+
+.form-group textarea:disabled {
+
+    background: #f1f5f9;
+
+    cursor: not-allowed;
+
+    opacity: .8;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes paymentFormFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .payment-form-card {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .payment-form-card {
+
+        padding: 20px;
+
+        margin: 20px;
+
+    }
+
+    .payment-form-card h2 {
+
+        font-size: 24px;
+
+    }
+
+    .payment-form-actions {
+
+        flex-direction: column;
+
+    }
+
+    .payment-form-actions button {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .payment-form-card {
+
+        padding: 18px;
+
+    }
+
+    .payment-form-card h2 {
+
+        font-size: 22px;
+
+    }
+
+    .form-group input,
+
+    .form-group select,
+
+    .form-group textarea {
+
+        padding: 12px 14px;
+
+        font-size: 14px;
+
+    }
+
+}

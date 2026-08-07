@@ -1,0 +1,111 @@
+/* ==========================================
+   RIFA - RULETA
+   VARIABLES GLOBALES
+========================================== */
+
+:root{
+
+    /* ======================================
+       COLORES PRINCIPALES
+    ====================================== */
+
+    --primary:#2563EB;
+    --primary-dark:#1D4ED8;
+    --primary-light:#60A5FA;
+
+    --secondary:#06B6D4;
+    --secondary-dark:#0891B2;
+
+    --success:#22C55E;
+    --warning:#FACC15;
+    --danger:#EF4444;
+
+    /* ======================================
+       FONDOS
+    ====================================== */
+
+    --background:#F4F7FB;
+
+    --background-dark:#0F172A;
+
+    --surface:#FFFFFF;
+
+    --surface-light:#F8FAFC;
+
+    /* ======================================
+       TEXTO
+    ====================================== */
+
+    --text:#1E293B;
+
+    --text-light:#64748B;
+
+    --text-white:#FFFFFF;
+
+    /* ======================================
+       BORDES
+    ====================================== */
+
+    --border:#CBD5E1;
+
+    --border-radius-xs:6px;
+
+    --border-radius-sm:10px;
+
+    --border-radius-md:15px;
+
+    --border-radius-lg:22px;
+
+    --border-radius-xl:30px;
+
+    /* ======================================
+       SOMBRAS
+    ====================================== */
+
+    --shadow-xs:
+        0 2px 6px rgba(0,0,0,.08);
+
+    --shadow-sm:
+        0 5px 12px rgba(0,0,0,.12);
+
+    --shadow-md:
+        0 12px 25px rgba(0,0,0,.18);
+
+    --shadow-lg:
+        0 18px 40px rgba(0,0,0,.25);
+
+    /* ======================================
+       TRANSICIONES
+    ====================================== */
+
+    --transition-fast:.2s;
+
+    --transition:.3s;
+
+    --transition-slow:.5s;
+
+    /* ======================================
+       TIPOGRAFÍA
+    ====================================== */
+
+    --font-family:
+
+        "Poppins",
+
+        "Segoe UI",
+
+        sans-serif;
+
+    --font-xs:.80rem;
+
+    --font-sm:.95rem;
+
+    --font-md:1rem;
+
+    --font-lg:1.25rem;
+
+    --font-xl:1.8rem;
+
+    --font-xxl:2.4rem;
+
+}

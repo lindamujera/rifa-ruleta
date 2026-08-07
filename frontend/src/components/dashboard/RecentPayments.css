@@ -1,0 +1,337 @@
+/* ==========================================
+   src/components/dashboard/RecentPayments.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.recent-payments {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.recent-payments-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 2px solid #f1f5f9;
+
+}
+
+.recent-payments-header h2 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Tabla
+========================================== */
+
+.payments-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+}
+
+/* ==========================================
+   Cabecera
+========================================== */
+
+.payments-table thead {
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
+
+}
+
+.payments-table th {
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+/* ==========================================
+   Filas
+========================================== */
+
+.payments-table tbody tr {
+
+    transition: .25s;
+
+}
+
+.payments-table tbody tr:nth-child(even) {
+
+    background: #f8fafc;
+
+}
+
+.payments-table tbody tr:hover {
+
+    background: #dbeafe;
+
+}
+
+/* ==========================================
+   Celdas
+========================================== */
+
+.payments-table td {
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: #334155;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    font-size: 15px;
+
+}
+
+/* ==========================================
+   Estado
+========================================== */
+
+.payment-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 120px;
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+/* ==========================================
+   Aprobado
+========================================== */
+
+.payment-status.approved {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+/* ==========================================
+   Pendiente
+========================================== */
+
+.payment-status.pending {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+/* ==========================================
+   Rechazado
+========================================== */
+
+.payment-status.rejected {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+/* ==========================================
+   Procesando
+========================================== */
+
+.payment-status.processing {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+.recent-payments {
+
+    animation: fadeRecentPayments .35s ease;
+
+}
+
+@keyframes fadeRecentPayments {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .recent-payments {
+
+        padding: 20px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .recent-payments {
+
+        padding: 18px;
+
+        overflow-x: auto;
+
+    }
+
+    .recent-payments-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+    .recent-payments-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .payments-table {
+
+        min-width: 700px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .recent-payments {
+
+        padding: 15px;
+
+    }
+
+    .recent-payments-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .payments-table th,
+
+    .payments-table td {
+
+        padding: 12px;
+
+        font-size: 13px;
+
+    }
+
+    .payment-status {
+
+        min-width: 90px;
+
+        font-size: 11px;
+
+        padding: 6px 12px;
+
+    }
+
+}

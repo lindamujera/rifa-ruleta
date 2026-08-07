@@ -1,0 +1,367 @@
+/* ==========================================
+   src/components/common/Modal.css
+========================================== */
+
+/* ==========================================
+   Overlay
+========================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(4px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    animation: overlayFade .25s ease;
+
+}
+
+/* ==========================================
+   Modal Base
+========================================== */
+
+.modal {
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    width: 100%;
+
+    max-height: 90vh;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+
+    animation: modalOpen .30s ease;
+
+}
+
+/* ==========================================
+   Tamaños
+========================================== */
+
+.modal-small {
+
+    max-width: 420px;
+
+}
+
+.modal-medium {
+
+    max-width: 650px;
+
+}
+
+.modal-large {
+
+    max-width: 900px;
+
+}
+
+.modal-fullscreen {
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: none;
+
+    max-height: none;
+
+    border-radius: 0;
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background: #f8fafc;
+
+}
+
+/* ==========================================
+   Título
+========================================== */
+
+.modal-title {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #1f2937;
+
+}
+
+/* ==========================================
+   Botón Cerrar
+========================================== */
+
+.modal-close {
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    color: #6b7280;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    transition: all .2s ease;
+
+}
+
+.modal-close:hover {
+
+    background: #f3f4f6;
+
+    color: #111827;
+
+}
+
+/* ==========================================
+   Body
+========================================== */
+
+.modal-body {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 24px;
+
+}
+
+/* ==========================================
+   Footer
+========================================== */
+
+.modal-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 20px 24px;
+
+    border-top: 1px solid #e5e7eb;
+
+    background: #f9fafb;
+
+    flex-wrap: wrap;
+
+}
+
+/* ==========================================
+   Scroll Personalizado
+========================================== */
+
+.modal-body::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+.modal-body::-webkit-scrollbar-track {
+
+    background: #f3f4f6;
+
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+
+    background: #cbd5e1;
+
+    border-radius: 10px;
+
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+
+    background: #94a3b8;
+
+}
+
+/* ==========================================
+   Animaciones
+========================================== */
+
+@keyframes overlayFade {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-30px) scale(.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+
+}
+
+/* ==========================================
+   Tablet
+========================================== */
+
+@media (max-width: 768px) {
+
+    .modal {
+
+        width: 100%;
+
+    }
+
+    .modal-header {
+
+        padding: 18px;
+
+    }
+
+    .modal-body {
+
+        padding: 18px;
+
+    }
+
+    .modal-footer {
+
+        padding: 18px;
+
+    }
+
+    .modal-title {
+
+        font-size: 20px;
+
+    }
+
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media (max-width: 480px) {
+
+    .modal-overlay {
+
+        padding: 10px;
+
+        align-items: flex-end;
+
+    }
+
+    .modal {
+
+        border-radius: 16px 16px 0 0;
+
+        max-height: 95vh;
+
+    }
+
+    .modal-title {
+
+        font-size: 18px;
+
+    }
+
+    .modal-header {
+
+        padding: 16px;
+
+    }
+
+    .modal-body {
+
+        padding: 16px;
+
+    }
+
+    .modal-footer {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 16px;
+
+    }
+
+    .modal-footer button {
+
+        width: 100%;
+
+    }
+
+}

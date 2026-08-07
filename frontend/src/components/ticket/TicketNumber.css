@@ -1,0 +1,277 @@
+/* ==========================================
+   src/components/ticket/TicketNumber.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.ticket-number {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    border: 2px solid #e2e8f0;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition: all .30s ease;
+
+    user-select: none;
+
+    cursor: default;
+
+}
+
+.ticket-number:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+
+}
+
+/* ==========================================
+   Etiqueta
+========================================== */
+
+.ticket-number-label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+/* ==========================================
+   Número
+========================================== */
+
+.ticket-number-value {
+
+    font-family: "Courier New", monospace;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #0f172a;
+
+}
+
+/* ==========================================
+   Tamaños
+========================================== */
+
+.ticket-number.small {
+
+    padding: 12px;
+
+}
+
+.ticket-number.small .ticket-number-value {
+
+    font-size: 24px;
+
+}
+
+.ticket-number.medium {
+
+    padding: 20px;
+
+}
+
+.ticket-number.medium .ticket-number-value {
+
+    font-size: 34px;
+
+}
+
+.ticket-number.large {
+
+    padding: 28px;
+
+}
+
+.ticket-number.large .ticket-number-value {
+
+    font-size: 48px;
+
+}
+
+/* ==========================================
+   Colores
+========================================== */
+
+.ticket-number.primary {
+
+    border-color: #2563eb;
+
+}
+
+.ticket-number.primary .ticket-number-value {
+
+    color: #2563eb;
+
+}
+
+.ticket-number.success {
+
+    border-color: #16a34a;
+
+}
+
+.ticket-number.success .ticket-number-value {
+
+    color: #16a34a;
+
+}
+
+.ticket-number.warning {
+
+    border-color: #f59e0b;
+
+}
+
+.ticket-number.warning .ticket-number-value {
+
+    color: #d97706;
+
+}
+
+.ticket-number.danger {
+
+    border-color: #dc2626;
+
+}
+
+.ticket-number.danger .ticket-number-value {
+
+    color: #dc2626;
+
+}
+
+.ticket-number.winner {
+
+    background: linear-gradient(
+        135deg,
+        #fff7cc,
+        #ffe082
+    );
+
+    border-color: #facc15;
+
+}
+
+.ticket-number.winner .ticket-number-value {
+
+    color: #b45309;
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .ticket-number.large .ticket-number-value {
+
+        font-size: 40px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .ticket-number {
+
+        padding: 18px;
+
+    }
+
+    .ticket-number.large .ticket-number-value {
+
+        font-size: 34px;
+
+    }
+
+    .ticket-number.medium .ticket-number-value {
+
+        font-size: 28px;
+
+    }
+
+    .ticket-number.small .ticket-number-value {
+
+        font-size: 22px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil Pequeño
+========================================== */
+
+@media (max-width: 480px) {
+
+    .ticket-number {
+
+        width: 100%;
+
+        padding: 16px;
+
+    }
+
+    .ticket-number-label {
+
+        font-size: 12px;
+
+    }
+
+    .ticket-number.large .ticket-number-value {
+
+        font-size: 28px;
+
+    }
+
+    .ticket-number.medium .ticket-number-value {
+
+        font-size: 24px;
+
+    }
+
+    .ticket-number.small .ticket-number-value {
+
+        font-size: 20px;
+
+        letter-spacing: 2px;
+
+    }
+
+}

@@ -1,0 +1,294 @@
+/* ==========================================
+   src/components/admin/PrizePoolCard.css
+========================================== */
+
+/* ==========================================
+   Contenedor Principal
+========================================== */
+
+.prize-pool-card {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    padding: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #fffbea,
+        #fef3c7
+    );
+
+    border: 1px solid #fde68a;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 30px rgba(245,158,11,.15);
+
+    animation: prizePoolFade .35s ease;
+
+}
+
+/* ==========================================
+   Encabezado
+========================================== */
+
+.prize-pool-header {
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+}
+
+.prize-pool-header h2 {
+
+    margin: 0;
+
+    color: #92400e;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Grid
+========================================== */
+
+.prize-pool-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+
+    gap: 20px;
+
+}
+
+/* ==========================================
+   Tarjetas
+========================================== */
+
+.pool-item {
+
+    padding: 22px;
+
+    background: rgba(255,255,255,.85);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255,255,255,.90);
+
+    transition: .30s;
+
+}
+
+.pool-item:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.10);
+
+}
+
+.pool-item span {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #92400e;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+.pool-item strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #78350f;
+
+}
+
+/* ==========================================
+   Estados
+========================================== */
+
+.pool-status {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-width: 120px;
+
+    padding: 8px 18px;
+
+    border-radius: 999px;
+
+    text-transform: uppercase;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+.pool-status.open,
+.pool-status.abierta,
+.pool-status.activa {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.pool-status.closed,
+.pool-status.cerrada {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+.pool-status.finished,
+.pool-status.finalizada {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+.pool-status.pending,
+.pool-status.pendiente {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+/* ==========================================
+   Animación
+========================================== */
+
+@keyframes prizePoolFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Tablet
+========================================== */
+
+@media (max-width: 992px) {
+
+    .prize-pool-card {
+
+        padding: 25px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Móvil
+========================================== */
+
+@media (max-width: 768px) {
+
+    .prize-pool-card {
+
+        padding: 20px;
+
+    }
+
+    .prize-pool-header h2 {
+
+        font-size: 24px;
+
+    }
+
+    .prize-pool-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .pool-item strong {
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive Celular
+========================================== */
+
+@media (max-width: 480px) {
+
+    .prize-pool-card {
+
+        padding: 18px;
+
+    }
+
+    .prize-pool-header h2 {
+
+        font-size: 20px;
+
+    }
+
+    .pool-item {
+
+        padding: 18px;
+
+    }
+
+    .pool-item span {
+
+        font-size: 14px;
+
+    }
+
+    .pool-item strong {
+
+        font-size: 22px;
+
+    }
+
+}
