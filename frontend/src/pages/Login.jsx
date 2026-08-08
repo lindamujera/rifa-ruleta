@@ -18,6 +18,7 @@ function Login() {
 
     // Estados
     const [correo, setCorreo] = useState("");
+    const [mostrarPassword, setMostrarPassword] = useState(false);
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -67,12 +68,27 @@ function Login() {
                     onChange={(e) => setCorreo(e.target.value)}
                 />
 
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+               <div className="password-container">
+
+               <input
+                 type={mostrarPassword ? "text" : "password"}
+                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Contraseña"
+               />
+
+             <button
+             type="button"
+             className="password-toggle"
+             onClick={() =>
+             setMostrarPassword(!mostrarPassword)
+         }
+       >
+        {mostrarPassword ? "🙈" : "👁️"}
+    </button>
+
+</div>
 
                 <button
                     className="primary-btn"
