@@ -63,7 +63,7 @@ function Register() {
           required
         />
 
-        <div className="password-container">
+       <div className="password-container">
 
     <input
         type={mostrarPassword ? "text" : "password"}
@@ -88,9 +88,9 @@ function Register() {
           Registrarme
         </button>
 
-        <p>
-           <span className="register-link-static">inicia sesion aqui
-        </p>
+       <p>
+    ¿Ya tienes una cuenta?<span className="register-link-static">Inicia sesión aquí</span>
+     </p>
       </form>
     </div>
   );
