@@ -99,7 +99,7 @@ function Login() {
                 </button>
 
                <p>
-                <span className="register-link-static">Regístrate aquí</span>
+                <span className="register-link-static">Al inicio en participa ahora haces tu registro</span>
               </p>
             </div>
         </div>
