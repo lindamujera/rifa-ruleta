@@ -8,64 +8,57 @@ const BusinessService = require("../services/BusinessService");
 class PaymentController {
 
     // ==========================================
-    // Crear Pago
+    // Crear Pago (VERSIÓN CORREGIDA Y ROBUSTA)
     // ==========================================
 
     async crear(req, res) {
-
         try {
-
             console.log("=================================");
-            console.log("REQ.FILE");
-            console.log(req.file);
+            console.log("REQ.USER:", req.user);
+            console.log("REQ.FILE:", req.file);
+            console.log("REQ.BODY:", req.body);
+            console.log("=================================");
 
-            console.log("REQ.BODY");
-            console.log(req.body);
+            // 1. Validar que el middleware de autenticación haya inyectado el usuario
+            if (!req.user || (!req.user.id && !req.user._id)) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Usuario no autenticado o sesión expirada."
+                });
+            }
+
+            // 2. Extraer el ID del usuario de forma segura
+            const usuarioId = req.user.id || req.user._id;
+
+            // 3. Manejo de la propiedad del comprobante (soporta local req.file.filename y nube req.file.path)
+            let comprobanteNombre = null;
+            if (req.file) {
+                comprobanteNombre = req.file.filename || req.file.path || req.file.originalname;
+            }
 
             const datos = {
-
                 ...req.body,
-
-                usuario: req.user.id,
-
-                comprobante: req.file
-                    ? req.file.filename
-                    : null
-
+                usuario: usuarioId,
+                comprobante: comprobanteNombre
             };
-
-            console.log("DATOS");
-            console.log(datos);
-            console.log("=================================");
 
             const pago = await PaymentService.crear(datos);
 
             return res.status(201).json({
-
                 success: true,
-
                 message: "Pago registrado correctamente.",
-
                 data: pago
-
             });
 
         } catch (error) {
-
-            console.error(error);
+            console.error("🔴 Error en PaymentController.crear:", error);
 
             return res.status(500).json({
-
                 success: false,
-
-                message: error.message
-
+                message: error.message || "Error interno al procesar el pago."
             });
-
         }
-
     }
-
     // ==========================================
     // Aprobar Pago
     // ==========================================
