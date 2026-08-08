@@ -153,6 +153,63 @@
     color: #bae6fd;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
+/* ==========================================
+   Enlace "Regístrate aquí" - solo visual
+   ========================================== */
+
+.login-form .register-link-static {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 5px;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ==========================================
+   Contenedor de contraseña con ojito
+   ========================================== */
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Input de contraseña */
+
+.password-container input {
+    padding-right: 50px;
+}
+
+/* ==========================================
+   Botón del ojito
+   ========================================== */
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    padding: 5px;
+
+    font-size: 20px;
+
+    z-index: 5;
+}
+
+/* Efecto al pasar el mouse */
+
+.password-toggle:hover {
+    color: #bae6fd;
+}
 
 /* Animación de Entrada */
 @keyframes zoomIn {
