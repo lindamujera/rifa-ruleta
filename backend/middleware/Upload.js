@@ -5,6 +5,7 @@
 
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs"); // 👈 Importamos el módulo de sistema de archivos
 
 // ==========================================
 // Almacenamiento
@@ -12,7 +13,14 @@ const path = require("path");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/comprobantes");
+        const dir = "uploads/comprobantes";
+
+        // 💡 Verificar y crear la carpeta si no existe en Render
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+
+        cb(null, dir);
     },
 
     filename: (req, file, cb) => {
