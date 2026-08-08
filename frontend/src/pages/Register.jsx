@@ -75,7 +75,7 @@ function Register() {
         </button>
 
         <p>
-          ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
+           <span className="register-link-static">inicia sesion aqui
         </p>
       </form>
     </div>
