@@ -29,7 +29,6 @@ const API_CONFIG = {
 /**
  * Endpoints de Autenticación
  */
-
 export const AUTH_API = {
 
     LOGIN: "/auth/login",
