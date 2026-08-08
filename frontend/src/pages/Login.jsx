@@ -83,7 +83,7 @@ function Login() {
                 </button>
 
                 <p>
-                    ¿No tienes una cuenta? <a href="/register">Regístrate aquí</a>
+                    <span className="register-link-static">Regístrate aquí
                 </p>
             </div>
         </div>
