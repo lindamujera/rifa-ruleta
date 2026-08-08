@@ -98,9 +98,9 @@ function Login() {
                     {loading ? "Ingresando..." : "Ingresar"}
                 </button>
 
-                <p>
-                    <span className="register-link-static">Regístrate aquí
-                </p>
+               <p>
+                <span className="register-link-static">Regístrate aquí</span>
+              </p>
             </div>
         </div>
     );
