@@ -12,7 +12,7 @@ const path = require("path");
 
 connectDB();
 
-app.use(cors());
+app.use(cors()); // Permite peticiones desde cualquier origen (incluyendo Netlify)
 app.use(express.json());
 
 app.use("/uploads",express.static(path.join(__dirname, "uploads"))); 
