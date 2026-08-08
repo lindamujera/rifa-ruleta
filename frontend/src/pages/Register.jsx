@@ -11,6 +11,7 @@ function Register() {
   const [celular, setCelular] = useState("");
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
+  const [mostrarPassword, setMostrarPassword] = useState(false);
 
   const registrarUsuario = async (e) => {
     e.preventDefault(); // Evita recargar la página
@@ -62,14 +63,27 @@ function Register() {
           required
         />
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="password-container">
 
+    <input
+        type={mostrarPassword ? "text" : "password"}
+        name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Contraseña"
+    />
+
+    <button
+        type="button"
+        className="password-toggle"
+        onClick={() =>
+            setMostrarPassword(!mostrarPassword)
+        }
+    >
+        {mostrarPassword ? "🙈" : "👁️"}
+    </button>
+
+</div>
         <button type="submit" className="primary-btn">
           Registrarme
         </button>
