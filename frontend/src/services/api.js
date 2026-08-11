@@ -10,13 +10,13 @@ import axios from "axios";
 // ==========================================
 
 const api = axios.create({
-
-      baseURL:
+    baseURL:
         import.meta.env.VITE_API_URL ||
-        "https://rifa-ruleta-backend.onrender.com",
-
-    timeout: 30000
-
+        "https://rifa-ruleta-backend.onrender.com/api",
+    timeout: 30000,
+    headers: {
+        "Content-Type": "application/json"
+    }
 });
 
 // ==========================================
