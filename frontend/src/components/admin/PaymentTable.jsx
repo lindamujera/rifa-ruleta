@@ -27,7 +27,7 @@ function PaymentTable() {
 
     const navigate = useNavigate();
 
-    // ==========================================
+   // ==========================================
     // Cargar Pagos
     // ==========================================
 
@@ -41,7 +41,8 @@ function PaymentTable() {
             setError("");
             setSuccess("");
 
-            const response = await paymentService.obtenerPendientes();
+            // 🟢 CAMBIO AQUÍ: Llamamos a obtenerTodos() en lugar de obtenerPendientes()
+            const response = await paymentService.obtenerTodos();
 
             console.log("Respuesta backend pagos:", response.data);
 
@@ -62,7 +63,6 @@ function PaymentTable() {
             setLoading(false);
         }
     };
-
     // ==========================================
     // Aprobar Pago
     // ==========================================
