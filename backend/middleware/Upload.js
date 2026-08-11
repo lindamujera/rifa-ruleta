@@ -1,70 +1,142 @@
 // ==========================================
-// middleware/upload.js
+// backend/middleware/Upload.js
 // Configuración de Multer para Comprobantes
 // ==========================================
 
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs"); // 👈 Importamos el módulo de sistema de archivos
+const fs = require("fs");
+
+// ==========================================
+// Carpeta de almacenamiento
+// ==========================================
+
+const uploadDir = path.join(
+    __dirname,
+    "..",
+    "uploads",
+    "comprobantes"
+);
+
+// ==========================================
+// Crear carpeta si no existe
+// ==========================================
+
+if (!fs.existsSync(uploadDir)) {
+
+    fs.mkdirSync(
+        uploadDir,
+        {
+            recursive: true
+        }
+    );
+
+}
 
 // ==========================================
 // Almacenamiento
 // ==========================================
 
 const storage = multer.diskStorage({
+
     destination: (req, file, cb) => {
-        const dir = "uploads/comprobantes";
 
-        // 💡 Verificar y crear la carpeta si no existe en Render
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
+        cb(
+            null,
+            uploadDir
+        );
 
-        cb(null, dir);
     },
 
     filename: (req, file, cb) => {
+
+        const extension =
+            path.extname(
+                file.originalname
+            ).toLowerCase();
+
         const nombre =
             Date.now() +
             "-" +
-            Math.round(Math.random() * 1e9) +
-            path.extname(file.originalname).toLowerCase();
+            Math.round(
+                Math.random() * 1e9
+            ) +
+            extension;
 
-        cb(null, nombre);
+        cb(
+            null,
+            nombre
+        );
+
     }
+
 });
 
 // ==========================================
-// Filtro de archivos (Solo imágenes)
+// Filtro de archivos
+// Solo imágenes
 // ==========================================
 
-const fileFilter = (req, file, cb) => {
-    // Expresión regular para extensiones
-    const extensiones = /jpg|jpeg|png|webp|heic|heif/;
+const fileFilter = (
+    req,
+    file,
+    cb
+) => {
 
-    // Validar extensión del nombre del archivo
-    const extensionValida = extensiones.test(
-        path.extname(file.originalname).toLowerCase()
-    );
+    const extensiones =
+        /\.(jpg|jpeg|png|webp|heic|heif)$/i;
 
-    // Validar que el tipo MIME sea de imagen (ej: "image/jpeg", "image/png", etc.)
-    const mimeValido = file.mimetype.startsWith("image/") || extensiones.test(file.mimetype);
+    const extensionValida =
+        extensiones.test(
+            file.originalname
+        );
 
-    if (extensionValida || mimeValido) {
-        return cb(null, true);
+    const mimeValido =
+        file.mimetype.startsWith(
+            "image/"
+        );
+
+    if (
+        extensionValida &&
+        mimeValido
+    ) {
+
+        return cb(
+            null,
+            true
+        );
+
     }
 
-    cb(new Error("Solo se permiten imágenes (JPG, JPEG, PNG, WEBP o HEIC)."));
+    cb(
+        new Error(
+            "Solo se permiten imágenes JPG, JPEG, PNG, WEBP, HEIC o HEIF."
+        )
+    );
+
 };
 
 // ==========================================
 // Configuración final
 // ==========================================
 
-module.exports = multer({
+const upload = multer({
+
     storage,
+
     fileFilter,
+
     limits: {
-        fileSize: 10 * 1024 * 1024 // Subido a 10MB para fotos de cámaras móviles
+
+        fileSize:
+            10 * 1024 * 1024
+
     }
+
 });
+
+// ==========================================
+// Exportar
+// ==========================================
+
+module.exports = upload;
