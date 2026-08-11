@@ -165,13 +165,23 @@ function PaymentTable() {
 
     // Obtener la URL del comprobante
     const getComprobanteUrl = (payment) => {
-        return (
+        const rawUrl = (
             payment.comprobanteUrl ||
             payment.comprobante ||
             payment.comprobante_url ||
             payment.proofUrl ||
             null
         );
+
+        if (!rawUrl) return null;
+
+        // Si la URL viene relativa (ej: "/uploads/img.jpg"), le anteponemos el servidor backend
+        if (typeof rawUrl === "string" && rawUrl.startsWith("/")) {
+            const backendBase = import.meta.env.VITE_API_URL || "http://localhost:5000";
+            return `${backendBase.replace(/\/api\/?$/, "")}${rawUrl}`;
+        }
+
+        return rawUrl;
     };
 
     // ==========================================
@@ -272,6 +282,9 @@ function PaymentTable() {
                                                     src={proofUrl}
                                                     alt="Comprobante de pago"
                                                     className="payment-proof-thumb"
+                                                    onError={(e) => {
+                                                        console.error("Error cargando la imagen desde:", proofUrl);
+                                                    }}
                                                 />
                                             </a>
                                         ) : (
