@@ -143,27 +143,22 @@ function PaymentTable() {
     };
 
     const getStatusClass = (status = "") => {
-
         switch (status.toLowerCase()) {
-
             case "approved":
             case "aprobado":
                 return "approved";
-
             case "pending":
             case "pendiente":
                 return "pending";
-
             case "rejected":
             case "rechazado":
                 return "rejected";
-
             default:
                 return "processing";
         }
     };
 
-    // Obtener la URL del comprobante
+    // 🟢 AQUÍ PEGAS ESTA VERSIÓN ACTUALIZADA PARA RENDER
     const getComprobanteUrl = (payment) => {
         const rawUrl = (
             payment.comprobanteUrl ||
@@ -175,13 +170,25 @@ function PaymentTable() {
 
         if (!rawUrl) return null;
 
-        // Si la URL viene relativa (ej: "/uploads/img.jpg"), le anteponemos el servidor backend
-        if (typeof rawUrl === "string" && rawUrl.startsWith("/")) {
-            const backendBase = import.meta.env.VITE_API_URL || "http://localhost:5000";
-            return `${backendBase.replace(/\/api\/?$/, "")}${rawUrl}`;
+        // 1. Si ya viene con https:// completa, se usa directo
+        if (typeof rawUrl === "string" && rawUrl.startsWith("https://")) {
+            return rawUrl;
         }
 
-        return rawUrl;
+        // 2. Obtener URL base de la variable de entorno o Render
+        const apiBase = import.meta.env.VITE_API_URL || "https://tu-app.onrender.com";
+
+        // 3. Limpiar '/api' del final y asegurar HTTPS
+        const serverDomain = apiBase
+            .replace(/\/api\/?$/, "")
+            .replace(/\/$/, "")
+            .replace("http://", "https://");
+
+        // 4. Extraer el nombre del archivo (ej: 1786473273927-206378426.png)
+        const fileName = rawUrl.split(/[/\\]/).pop();
+
+        // 5. Retornar URL apuntando a la subcarpeta /uploads/comprobantes/ en Render
+        return `${serverDomain}/uploads/comprobantes/${fileName}`;
     };
 
     // ==========================================
