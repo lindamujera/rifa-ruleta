@@ -57,12 +57,15 @@ const obtenerPagoPorCodigo = async (codigo) => {
 // ==========================================
 
 const crearPago = async (formData) => {
-
     return await api.post(
         "/payments",
-        formData
+        formData,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
     );
-
 };
 
 // ==========================================
@@ -70,11 +73,9 @@ const crearPago = async (formData) => {
 // ==========================================
 
 const aprobarPago = async (pagoId) => {
-
     return await api.put(
         `/payments/${pagoId}/aprobar`
     );
-
 };
 
 // ==========================================
@@ -82,14 +83,12 @@ const aprobarPago = async (pagoId) => {
 // ==========================================
 
 const rechazarPago = async (pagoId, motivo) => {
-
     return await api.put(
         `/payments/${pagoId}/rechazar`,
         {
             motivo
         }
     );
-
 };
 
 // ==========================================
@@ -97,36 +96,24 @@ const rechazarPago = async (pagoId, motivo) => {
 // ==========================================
 
 const eliminarPago = async (id) => {
-
     return await api.delete(`/payments/${id}`);
-
 };
 
 // ==========================================
 // Exportar servicio
 // ==========================================
 
-const PaymentService = {
-
+const paymentService = {
     obtenerMisPagos,
-
     obtenerPendientes,
-
     obtenerAprobados,
-
     obtenerRechazados,
-
     obtenerPago,
-
-    obtenerPagoPorCodigo, 
-
+    obtenerPagoPorCodigo,
     crearPago,
-
     aprobarPago,
-
     rechazarPago,
-
     eliminarPago
-
 };
-export default PaymentService;
+
+export default paymentService;
