@@ -3,6 +3,7 @@
 // ==========================================
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import paymentService from "../../services/paymentService";
 
@@ -13,586 +14,749 @@ import Button from "../common/Button";
 import "./PaymentTable.css";
 
 function PaymentTable() {
-  // ==========================================
-  // Estados
-  // ==========================================
 
-  const [payments, setPayments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [processingId, setProcessingId] = useState(null);
+    // ==========================================
+    // Estados
+    // ==========================================
 
-  // ==========================================
-  // Cargar todos los pagos
-  // Pendientes + Aprobados + Rechazados
-  // ==========================================
+    const [payments, setPayments] = useState([]);
 
-  useEffect(() => {
-    loadPayments();
-  }, []);
+    const [loading, setLoading] = useState(true);
 
-  const loadPayments = async () => {
-    try {
-      setLoading(true);
-      setError("");
+    const [error, setError] = useState("");
 
-      // ======================================
-      // Obtener los tres estados
-      // ======================================
+    const [success, setSuccess] = useState("");
 
-      const [
-        pendientesResponse,
-        aprobadosResponse,
-        rechazadosResponse,
-      ] = await Promise.all([
-        paymentService.obtenerPendientes(),
-        paymentService.obtenerAprobados(),
-        paymentService.obtenerRechazados(),
-      ]);
+    const [processingId, setProcessingId] = useState(null);
 
-      // ======================================
-      // Extraer información
-      // ======================================
+    const navigate = useNavigate();
 
-      const pendientes = pendientesResponse?.data?.data || [];
-      const aprobados = aprobadosResponse?.data?.data || [];
-      const rechazados = rechazadosResponse?.data?.data || [];
+    // ==========================================
+    // Cargar Pagos
+    // ==========================================
 
-      // ======================================
-      // Unificar todos los pagos
-      // ======================================
+    useEffect(() => {
 
-      const todosLosPagos = [
-        ...pendientes,
-        ...aprobados,
-        ...rechazados,
-      ];
+        loadPayments();
 
-      // ======================================
-      // Eliminar duplicados
-      // ======================================
+    }, []);
 
-      const pagosUnicos = Array.from(
-        new Map(
-          todosLosPagos.map(
-            (payment) => [payment._id, payment]
-          )
-        ).values()
-      );
+    const loadPayments = async () => {
 
-      // ======================================
-      // Ordenar del más reciente al más antiguo
-      // ======================================
+        try {
 
-      pagosUnicos.sort((a, b) => {
-        const fechaA = new Date(
-          a.createdAt || 0
-        ).getTime();
+            setLoading(true);
 
-        const fechaB = new Date(
-          b.createdAt || 0
-        ).getTime();
+            setError("");
 
-        return fechaB - fechaA;
-      });
+            setSuccess("");
 
-      // ======================================
-      // Guardar pagos
-      // ======================================
+            const response =
+                await paymentService.obtenerPendientes();
 
-      setPayments(pagosUnicos);
-    } catch (err) {
-      console.error(
-        "Error cargando pagos:",
-        err
-      );
+            const data =
+                response.data?.data || [];
 
-      setError(
-        err.response?.data?.message ||
-          "No fue posible cargar los pagos."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+            setPayments(data);
 
-  // ==========================================
-  // Aprobar Pago
-  // ==========================================
+        } catch (err) {
 
-  const approvePayment = async (paymentId) => {
-    try {
-      setProcessingId(paymentId);
-      setError("");
-      setSuccess("");
+            console.error(
+                "Error cargando pagos:",
+                err
+            );
 
-      // ======================================
-      // Aprobar pago
-      // ======================================
+            setError(
 
-      const response =
-        await paymentService.aprobarPago(
-          paymentId
+                err.response?.data?.message ||
+
+                "No fue posible cargar los pagos."
+
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    };
+
+    // ==========================================
+    // Aprobar Pago
+    // ==========================================
+
+    const approvePayment = async (paymentId) => {
+
+        try {
+
+            setProcessingId(paymentId);
+
+            const response =
+                await paymentService.aprobarPago(
+                    paymentId
+                );
+
+            setSuccess(
+                "Pago aprobado correctamente."
+            );
+
+            // ==========================================
+            // Obtener Spin
+            // ==========================================
+
+            const data =
+                response?.data?.data;
+
+            const spin =
+                data?.spin;
+
+            const spinId =
+                data?.spinId ||
+                spin?.id ||
+                spin?._id;
+
+            // ==========================================
+            // Redirigir a la ruleta
+            // ==========================================
+
+            if (spinId) {
+
+                navigate(
+                    `/roulette/${spinId}`
+                );
+
+                return;
+
+            }
+
+            // ==========================================
+            // Recargar pagos
+            // ==========================================
+
+            await loadPayments();
+
+        } catch (err) {
+
+            console.error(
+                "Error aprobando pago:",
+                err
+            );
+
+            alert(
+
+                err.response?.data?.message ||
+
+                "No fue posible aprobar el pago."
+
+            );
+
+        } finally {
+
+            setProcessingId(null);
+
+        }
+
+    };
+
+    // ==========================================
+    // Rechazar Pago
+    // ==========================================
+
+    const rejectPayment = async (paymentId) => {
+
+        try {
+
+            setProcessingId(paymentId);
+
+            await paymentService.rechazarPago(
+                paymentId
+            );
+
+            setSuccess(
+                "Pago rechazado correctamente."
+            );
+
+            await loadPayments();
+
+        } catch (err) {
+
+            console.error(
+                "Error rechazando pago:",
+                err
+            );
+
+            alert(
+
+                err.response?.data?.message ||
+
+                "No fue posible rechazar el pago."
+
+            );
+
+        } finally {
+
+            setProcessingId(null);
+
+        }
+
+    };
+
+    // ==========================================
+    // Formato Moneda
+    // ==========================================
+
+    const formatCurrency = (value = 0) => {
+
+        return Number(value).toLocaleString(
+            "es-CO"
         );
 
-      // ======================================
-      // Obtener pago actualizado
-      // ======================================
+    };
 
-      const pagoActualizado =
-        response?.data?.data?.pago;
+    // ==========================================
+    // Formato Fecha
+    // ==========================================
 
-      // ======================================
-      // Actualizar inmediatamente la tabla
-      // ======================================
+    const formatDate = (date) => {
 
-      if (pagoActualizado) {
-        setPayments((prevPayments) =>
-          prevPayments.map((payment) =>
-            payment._id === paymentId
-              ? {
-                  ...payment,
-                  estado: "APROBADO",
-                }
-              : payment
-          )
+        if (!date) {
+
+            return "-";
+
+        }
+
+        return new Date(date).toLocaleString(
+            "es-CO"
         );
-      }
 
-      setSuccess(
-        "Pago aprobado correctamente."
-      );
+    };
 
-      // ======================================
-      // Recargar todos los pagos
-      // ======================================
+    // ==========================================
+    // Estado
+    // ==========================================
 
-      await loadPayments();
-    } catch (err) {
-      console.error(
-        "Error aprobando pago:",
-        err
-      );
+    const getStatusClass = (status = "") => {
 
-      setError(
-        err.response?.data?.message ||
-          "No fue posible aprobar el pago."
-      );
-    } finally {
-      setProcessingId(null);
-    }
-  };
+        switch (status.toLowerCase()) {
 
-  // ==========================================
-  // Rechazar Pago
-  // ==========================================
+            case "approved":
 
-  const rejectPayment = async (paymentId) => {
-    try {
-      setProcessingId(paymentId);
-      setError("");
-      setSuccess("");
+            case "aprobado":
 
-      // ======================================
-      // Rechazar pago
-      // ======================================
+                return "approved";
 
-      await paymentService.rechazarPago(
-        paymentId,
-        "Pago rechazado por el administrador."
-      );
+            case "pending":
 
-      // ======================================
-      // Actualizar inmediatamente
-      // ======================================
+            case "pendiente":
 
-      setPayments((prevPayments) =>
-        prevPayments.map((payment) =>
-          payment._id === paymentId
-            ? {
-                ...payment,
-                estado: "RECHAZADO",
-              }
-            : payment
-        )
-      );
+                return "pending";
 
-      setSuccess(
-        "Pago rechazado correctamente."
-      );
+            case "rejected":
 
-      // ======================================
-      // Recargar información
-      // ======================================
+            case "rechazado":
 
-      await loadPayments();
-    } catch (err) {
-      console.error(
-        "Error rechazando pago:",
-        err
-      );
+                return "rejected";
 
-      setError(
-        err.response?.data?.message ||
-          "No fue posible rechazar el pago."
-      );
-    } finally {
-      setProcessingId(null);
-    }
-  };
+            default:
 
-  // ==========================================
-  // Formato Moneda
-  // ==========================================
+                return "processing";
 
-  const formatCurrency = (value = 0) => {
-    return Number(value).toLocaleString(
-      "es-CO"
-    );
-  };
+        }
 
-  // ==========================================
-  // Formato Fecha
-  // ==========================================
+    };
 
-  const formatDate = (date) => {
-    if (!date) {
-      return "-";
+    // ==========================================
+    // Loading
+    // ==========================================
+
+    if (loading) {
+
+        return <Loader />;
+
     }
 
-    const fecha = new Date(date);
+    // ==========================================
+    // Render
+    // ==========================================
 
-    if (Number.isNaN(fecha.getTime())) {
-      return "-";
-    }
-
-    return fecha.toLocaleString("es-CO");
-  };
-
-  // ==========================================
-  // Clase del Estado
-  // ==========================================
-
-  const getStatusClass = (status = "") => {
-    switch (status.toLowerCase()) {
-      case "approved":
-      case "aprobado":
-        return "approved";
-
-      case "pending":
-      case "pendiente":
-        return "pending";
-
-      case "rejected":
-      case "rechazado":
-        return "rejected";
-
-      default:
-        return "processing";
-    }
-  };
-
-  // ==========================================
-  // Obtener premio del giro
-  // ==========================================
-
-  const getPremioGiro = (payment) => {
     return (
-      payment.spin?.premio ??
-      0
+
+        <section className="payment-table-container">
+
+            <div className="payment-table-header">
+
+                <h2>
+                    💳 Administración de Pagos
+                </h2>
+
+            </div>
+
+            {/* ==========================================
+                Mensaje de Error
+                ========================================== */}
+
+            {
+
+                error && (
+
+                    <Alert
+                        type="error"
+                        message={error}
+                    />
+
+                )
+
+            }
+
+            {/* ==========================================
+                Mensaje de Éxito
+                ========================================== */}
+
+            {
+
+                success && (
+
+                    <Alert
+                        type="success"
+                        message={success}
+                    />
+
+                )
+
+            }
+
+            {/* ==========================================
+                Tabla
+                ========================================== */}
+
+            {
+
+                payments.length === 0 ? (
+
+                    <Alert
+                        type="info"
+                        message="No existen pagos registrados."
+                    />
+
+                ) : (
+
+                    <table className="payment-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Usuario</th>
+
+                                <th>Correo</th>
+
+                                <th>Celular</th>
+
+                                <th>Referencia</th>
+
+                                <th>Valor</th>
+
+                                <th>Ticket</th>
+
+                                <th>Ronda</th>
+
+                                <th>Premio</th>
+
+                                <th>Fecha</th>
+
+                                <th>Comprobante</th>
+
+                                <th>Estado</th>
+
+                                <th>Acciones</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {
+
+                                payments.map(
+                                    (payment) => (
+
+                                        <tr
+                                            key={
+                                                payment._id
+                                            }
+                                        >
+
+                                            {/* ==========================================
+                                                Usuario
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.usuario?.nombre ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Correo
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.usuario?.correo ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Celular
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.usuario?.celular ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Referencia
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.referencia ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Valor
+                                                ========================================== */}
+
+                                            <td>
+
+                                                $
+
+                                                {
+
+                                                    formatCurrency(
+                                                        payment.valor ||
+                                                        0
+                                                    )
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Ticket
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.ticket?.codigo ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Ronda / Número de Rifa
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.ticket?.numeroRifa ||
+
+                                                    payment.ronda?.numero ||
+
+                                                    payment.ronda?.codigo ||
+
+                                                    "-"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Premio de la Ronda
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.ronda?.premio
+
+                                                        ? `$ ${formatCurrency(
+                                                            payment.ronda.premio
+                                                        )}`
+
+                                                        : "$ 0"
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Fecha
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    formatDate(
+                                                        payment.createdAt
+                                                    )
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Comprobante
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.comprobanteUrl ? (
+
+                                                        <img
+                                                            src={
+                                                                payment.comprobanteUrl
+                                                            }
+                                                            alt="Comprobante de pago"
+                                                            width="120"
+                                                            style={{
+                                                                borderRadius:
+                                                                    "10px",
+
+                                                                cursor:
+                                                                    "pointer",
+
+                                                                objectFit:
+                                                                    "cover",
+
+                                                                transition:
+                                                                    ".3s"
+                                                            }}
+
+                                                            onClick={() =>
+                                                                window.open(
+                                                                    payment.comprobanteUrl,
+                                                                    "_blank"
+                                                                )
+                                                            }
+
+                                                            onMouseOver={(e) => {
+
+                                                                e.target.style.transform =
+                                                                    "scale(1.08)";
+
+                                                            }}
+
+                                                            onMouseOut={(e) => {
+
+                                                                e.target.style.transform =
+                                                                    "scale(1)";
+
+                                                            }}
+
+                                                        />
+
+                                                    ) : (
+
+                                                        <span>
+
+                                                            Sin comprobante
+
+                                                        </span>
+
+                                                    )
+
+                                                }
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Estado
+                                                ========================================== */}
+
+                                            <td>
+
+                                                <span
+
+                                                    className={
+                                                        `payment-status ${
+                                                            getStatusClass(
+                                                                payment.estado ||
+                                                                "PENDIENTE"
+                                                            )
+                                                        }`
+                                                    }
+
+                                                >
+
+                                                    {
+
+                                                        payment.estado ||
+
+                                                        "PENDIENTE"
+
+                                                    }
+
+                                                </span>
+
+                                            </td>
+
+                                            {/* ==========================================
+                                                Acciones
+                                                ========================================== */}
+
+                                            <td>
+
+                                                {
+
+                                                    payment.estado ===
+                                                    "PENDIENTE"
+
+                                                        ? (
+
+                                                            <div className="payment-actions">
+
+                                                                {/* Aprobar */}
+
+                                                                <Button
+
+                                                                    className="btn-approve"
+
+                                                                    disabled={
+                                                                        processingId ===
+                                                                        payment._id
+                                                                    }
+
+                                                                    onClick={() =>
+                                                                        approvePayment(
+                                                                            payment._id
+                                                                        )
+                                                                    }
+
+                                                                >
+
+                                                                    {
+
+                                                                        processingId ===
+                                                                        payment._id
+
+                                                                            ? "Procesando..."
+
+                                                                            : "Aprobar"
+
+                                                                    }
+
+                                                                </Button>
+
+                                                                {/* Rechazar */}
+
+                                                                <Button
+
+                                                                    className="btn-reject"
+
+                                                                    disabled={
+                                                                        processingId ===
+                                                                        payment._id
+                                                                    }
+
+                                                                    onClick={() =>
+                                                                        rejectPayment(
+                                                                            payment._id
+                                                                        )
+                                                                    }
+
+                                                                >
+
+                                                                    {
+
+                                                                        processingId ===
+                                                                        payment._id
+
+                                                                            ? "Procesando..."
+
+                                                                            : "Rechazar"
+
+                                                                    }
+
+                                                                </Button>
+
+                                                            </div>
+
+                                                        )
+
+                                                        : (
+
+                                                            <span>
+
+                                                                ✔ Procesado
+
+                                                            </span>
+
+                                                        )
+
+                                                }
+
+                                            </td>
+
+                                        </tr>
+
+                                    )
+                                )
+
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                )
+
+            }
+
+        </section>
+
     );
-  };
 
-  // ==========================================
-  // Obtener premio mayor de la ronda
-  // ==========================================
-
-  const getPremioMayor = (payment) => {
-    return (
-      payment.ronda?.premioMayor ??
-      0
-    );
-  };
-
-  // ==========================================
-  // Loading
-  // ==========================================
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  // ==========================================
-  // Render
-  // ==========================================
-
-  return (
-    <div className="payment-table-container">
-      {/* ======================================
-          ENCABEZADO
-      ====================================== */}
-
-      <h2>💳 Administración de Pagos</h2>
-
-      {/* ======================================
-          ERROR
-      ====================================== */}
-
-      {error && (
-        <Alert type="error">
-          {error}
-        </Alert>
-      )}
-
-      {/* ======================================
-          ÉXITO
-      ====================================== */}
-
-      {success && (
-        <Alert type="success">
-          {success}
-        </Alert>
-      )}
-
-      {/* ======================================
-          SIN PAGOS
-      ====================================== */}
-
-      {payments.length === 0 ? (
-        <p>No hay pagos registrados.</p>
-      ) : (
-        /* ==================================
-            TABLA
-        ================================== */
-
-        <div className="payment-table-wrapper">
-          <table className="payment-table">
-            {/* ==================================
-                CABECERA
-            ================================== */}
-
-            <thead>
-              <tr>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Celular</th>
-                <th>Referencia</th>
-                <th>Valor</th>
-                <th>Ticket</th>
-                <th>Número</th>
-                <th>Ronda</th>
-                <th>Premio Giro</th>
-                <th>Premio Mayor</th>
-                <th>Fecha</th>
-                <th>Comprobante</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-
-            {/* ==================================
-                CUERPO
-            ================================== */}
-
-            <tbody>
-              {payments.map((payment) => (
-                <tr key={payment._id}>
-                  {/* ==============================
-                      Usuario
-                  ============================== */}
-
-                  <td>
-                    {payment.usuario?.nombre || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Correo
-                  ============================== */}
-
-                  <td>
-                    {payment.usuario?.correo || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Celular
-                  ============================== */}
-
-                  <td>
-                    {payment.usuario?.celular || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Referencia
-                  ============================== */}
-
-                  <td>
-                    {payment.referencia || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Valor
-                  ============================== */}
-
-                  <td>
-                    $ {formatCurrency(payment.valor || 0)}
-                  </td>
-
-                  {/* ==============================
-                      Ticket
-                  ============================== */}
-
-                  <td>
-                    {payment.ticket?.codigo || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Número de Rifa
-                  ============================== */}
-
-                  <td>
-                    {payment.ticket?.numeroRifa || "-"}
-                  </td>
-
-                  {/* ==============================
-                      Ronda
-                  ============================== */}
-
-                  <td>
-                    {payment.ronda?.numero ||
-                      payment.ronda?.codigo ||
-                      "-"}
-                  </td>
-
-                  {/* ==============================
-                      Premio Giro (Ruleta)
-                  ============================== */}
-
-                  <td>
-                    $ {formatCurrency(getPremioGiro(payment))}
-                  </td>
-
-                  {/* ==============================
-                      Premio Mayor (Sorteo)
-                  ============================== */}
-
-                  <td>
-                    $ {formatCurrency(getPremioMayor(payment))}
-                  </td>
-
-                  {/* ==============================
-                      Fecha
-                  ============================== */}
-
-                  <td>
-                    {formatDate(payment.createdAt)}
-                  </td>
-
-                  {/* ==============================
-                      Comprobante
-                  ============================== */}
-
-                  <td>
-                    {payment.comprobante ? (
-                      <img
-                        src={`http://localhost:5001/uploads/comprobantes/${payment.comprobante}`}
-                        alt="Comprobante de pago"
-                        width="120"
-                        style={{
-                          borderRadius: "10px",
-                          cursor: "pointer",
-                          objectFit: "cover",
-                          transition: ".3s",
-                        }}
-                        onClick={() =>
-                          window.open(
-                            `http://localhost:5001/uploads/comprobantes/${payment.comprobante}`,
-                            "_blank"
-                          )
-                        }
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform =
-                            "scale(1.08)";
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform =
-                            "scale(1)";
-                        }}
-                      />
-                    ) : (
-                      <span>Sin comprobante</span>
-                    )}
-                  </td>
-
-                  {/* ==============================
-                      Estado
-                  ============================== */}
-
-                  <td>
-                    <span
-                      className={`payment-status ${getStatusClass(
-                        payment.estado || "PENDIENTE"
-                      )}`}
-                    >
-                      {payment.estado || "PENDIENTE"}
-                    </span>
-                  </td>
-
-                  {/* ==============================
-                      Acciones
-                  ============================== */}
-
-                  <td>
-                    {payment.estado === "PENDIENTE" ? (
-                      <>
-                        {/* ==========================
-                            APROBAR
-                        ========================== */}
-
-                        <Button
-                          className="btn-approve"
-                          disabled={
-                            processingId === payment._id
-                          }
-                          onClick={() =>
-                            approvePayment(payment._id)
-                          }
-                        >
-                          {processingId === payment._id
-                            ? "Procesando..."
-                            : "Aprobar"}
-                        </Button>
-
-                        {/* ==========================
-                            RECHAZAR
-                        ========================== */}
-
-                        <Button
-                          className="btn-reject"
-                          disabled={
-                            processingId === payment._id
-                          }
-                          onClick={() =>
-                            rejectPayment(payment._id)
-                          }
-                        >
-                          {processingId === payment._id
-                            ? "Procesando..."
-                            : "Rechazar"}
-                        </Button>
-                      </>
-                    ) : (
-                      <span>✔ Procesado</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
 }
 
-export default PaymentTable; 
+export default PaymentTable;
