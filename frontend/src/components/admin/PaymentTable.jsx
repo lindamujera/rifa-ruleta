@@ -176,7 +176,7 @@ function PaymentTable() {
         }
 
         // 2. Obtener URL base de la variable de entorno o Render
-        const apiBase = import.meta.env.VITE_API_URL || "https://tu-app.onrender.com";
+        const apiBase = import.meta.env.VITE_API_URL || "https://rifa-ruleta-backend.onrender.com";
 
         // 3. Limpiar '/api' del final y asegurar HTTPS
         const serverDomain = apiBase
