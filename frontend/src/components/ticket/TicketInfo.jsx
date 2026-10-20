@@ -352,7 +352,7 @@ function TicketInfo({
 
                                 ticket.payment?.valor ||
 
-                                25000
+                                15000
 
                             )
 
