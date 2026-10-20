@@ -4,7 +4,7 @@ const settingSchema = new mongoose.Schema({
 
     precioGiro: {
         type: Number,
-        default: 25000
+        default: 15000
     },
 
     participantesPorRonda: {
