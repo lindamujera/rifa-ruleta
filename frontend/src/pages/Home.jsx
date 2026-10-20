@@ -36,7 +36,7 @@ export default function Home() {
 
                         <span>
 
-                            $25.000 COP
+                            $15.000 COP
 
                         </span>
                    
@@ -116,7 +116,7 @@ export default function Home() {
 
             <p>
                 Consigna únicamente
-                <strong> $25.000 COP</strong>.
+                <strong> $15.000 COP</strong>.
             </p>
 
         </div>
@@ -161,7 +161,7 @@ export default function Home() {
 
             <p>
                 Cuando la ronda llegue a
-                <strong> 100 participantes</strong>,
+                <strong> 200 participantes</strong>,
                 se realiza el sorteo del premio de
                 <strong> $1.000.000 COP</strong>.
             </p>
