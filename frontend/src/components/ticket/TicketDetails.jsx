@@ -143,7 +143,7 @@ function TicketDetails({
 
                                 {formatearMoneda(
 
-                                    ticket.valor || 25000
+                                    ticket.valor || 15000
 
                                 )}
 
