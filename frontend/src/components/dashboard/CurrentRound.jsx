@@ -69,9 +69,9 @@ function CurrentRound() {
 
             ((round.currentParticipants || 0) /
 
-                (round.maxParticipants || 100))
+                (round.maxParticipants || 200))
 
-            * 100
+            * 200
 
         );
 
