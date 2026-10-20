@@ -103,7 +103,7 @@ function TicketCard({
 
                         {Number(
 
-                            ticket.valor || 25000
+                            ticket.valor || 15000
 
                         ).toLocaleString("es-CO")}
 
