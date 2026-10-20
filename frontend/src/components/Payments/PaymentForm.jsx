@@ -32,7 +32,7 @@ function PaymentForm({
 
         referencia: `NEQUI-${Date.now()}`,
 
-        valor: 25000,
+        valor: 15000,
 
         observacion: ""
 
@@ -101,7 +101,7 @@ function PaymentForm({
 
                 referencia: `NEQUI-${Date.now()}`,
 
-                valor: 25000,
+                valor: 15000,
 
                 observacion: ""
 
