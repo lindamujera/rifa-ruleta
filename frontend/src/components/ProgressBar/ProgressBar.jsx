@@ -2,7 +2,7 @@ import "./ProgressBar.css";
 
 function ProgressBar({ current = 0 }) {
 
- const percent = (current / 10) * 100;
+ const percent = (current / 10) * 200;
 
  return (
 
