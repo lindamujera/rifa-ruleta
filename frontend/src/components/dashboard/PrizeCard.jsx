@@ -185,7 +185,7 @@ function PrizeCard() {
 
                                         prize.maxParticipants ||
 
-                                        100
+                                        200
 
                                     }
 
