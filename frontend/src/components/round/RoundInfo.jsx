@@ -26,10 +26,10 @@ function RoundInfo({ round }) {
 
     const maxParticipantes =
         round.maxParticipantes ||
-        100;
+        200;
 
     const porcentaje = (
-        (participantes / maxParticipantes) * 100
+        (participantes / maxParticipantes) * 200
     ).toFixed(0);
 
     const premioMayor =
@@ -38,11 +38,11 @@ function RoundInfo({ round }) {
 
     const fondoRuleta =
         round.fondoRuleta ||
-        551000;
+        1000000;
 
     const valorJugada =
         round.valorJugada ||
-        25000;
+        15000;
 
     const totalRecaudado =
         round.totalRecaudado ||
