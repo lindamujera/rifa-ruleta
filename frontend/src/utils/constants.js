@@ -12,9 +12,9 @@ export const APP_VERSION = "1.0.0";
 
 export const CURRENCY = "COP";
 
-export const PARTICIPATION_VALUE = 25000;
+export const PARTICIPATION_VALUE = 15000;
 
-export const MAX_PARTICIPANTS = 100;
+export const MAX_PARTICIPANTS = 200;
 
 export const MAIN_PRIZE = 1000000;
 
