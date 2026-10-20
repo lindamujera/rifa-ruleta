@@ -25,11 +25,11 @@ function RoundSummary({ round }) {
 
     const maxParticipantes =
         round.maxParticipantes ||
-        100;
+        200;
 
     const valorJugada =
         round.valorJugada ||
-        25000;
+        15000;
 
     const totalRecaudado =
         round.totalRecaudado ||
@@ -37,7 +37,7 @@ function RoundSummary({ round }) {
 
     const fondoRuleta =
         round.fondoRuleta ||
-        551000;
+        1000000;
 
     const premioMayor =
         round.premioMayor ||
@@ -56,9 +56,9 @@ function RoundSummary({ round }) {
         (
             participantes /
             maxParticipantes
-        ) * 100,
+        ) * 200,
 
-        100
+        200
 
     );
 
@@ -68,7 +68,7 @@ function RoundSummary({ round }) {
 
     const premiosDisponibles =
         round.premiosDisponibles ||
-        100;
+        200;
 
     const participantesRestantes =
         maxParticipantes -
