@@ -12,15 +12,15 @@ class PrizePoolBusiness {
         // Configuración general del negocio
         // ==========================================
 
-        this.VALOR_JUGADA = 25000;
+        this.VALOR_JUGADA = 15000;
 
-        this.MAX_PARTICIPANTES = 100;
+        this.MAX_PARTICIPANTES = 200;
 
         this.PREMIO_MAYOR = 1000000;
 
         // Fondo destinado exclusivamente
         // a los premios de la ruleta.
-        this.FONDO_RULETA = 551000;
+        this.FONDO_RULETA = 1000000;
 
     }
 
@@ -158,27 +158,21 @@ class PrizePoolBusiness {
 
     // ==========================================
     // Bolsa oficial de premios
-    // 100 premios
-    // Total: $551.000
+    // 200 premios
+    // Total: $1000000
     // ==========================================
     obtenerPremiosRuleta() {
 
         const premios = [];
 
-        // 70 premios de $5.000
-        premios.push(...Array(70).fill(5000));
+        // 2 premios de $15.000
+        premios.push(...Array(2).fill(15000));
 
-        // 15 premios de $6.000
-        premios.push(...Array(15).fill(6000));
+        // 70 premios de $6.000
+        premios.push(...Array(70).fill(6000));
 
-        // 11 premios de $7.000
-        premios.push(...Array(11).fill(7000));
-
-        // 2 premios de $8.000
-        premios.push(...Array(2).fill(8000));
-
-        // 2 premios de $9.000
-        premios.push(...Array(2).fill(9000));
+        // 110 premios de $5.000
+        premios.push(...Array(110).fill(5000));
 
         // Mezclar aleatoriamente
         return premios.sort(() => Math.random() - 0.5);
