@@ -35,7 +35,7 @@ export function formatCurrency(value = 0, withSymbol = true) {
  * Formatea un número con decimales.
  */
 
-export function formatDecimal(value = 0, decimals = 2) {
+export function formatDecimal(value = 0, decimals = 3) {
 
     return Number(value).toLocaleString(
 
@@ -85,7 +85,7 @@ export function formatPercentage(value = 0) {
 
 export function centsToPesos(cents = 0) {
 
-    return Number(cents) / 100;
+    return Number(cents) / 200;
 
 }
 
@@ -95,7 +95,7 @@ export function centsToPesos(cents = 0) {
 
 export function pesosToCents(pesos = 0) {
 
-    return Math.round(Number(pesos) * 100);
+    return Math.round(Number(pesos) * 200);
 
 }
 
