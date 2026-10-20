@@ -48,7 +48,7 @@ async crear(datos, session = null) {
 
         spin: null,
 
-        valor: datos.valor || 25000,
+        valor: datos.valor || 15000,
 
         metodoPago:
             datos.metodoPago || "NEQUI",
