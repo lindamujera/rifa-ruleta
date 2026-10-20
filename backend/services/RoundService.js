@@ -36,7 +36,7 @@ async abrirNuevaRonda(session = null) {
 
             totalRecaudado: 0,
 
-            fondoRuleta: 551000,
+            fondoRuleta: 1000000,
 
             premioMayor: 1000000,
 
@@ -234,9 +234,9 @@ console.log(
 console.log("==================================");
         const participantes = ronda.totalParticipantes;
 
-        ronda.totalRecaudado = participantes * 25000;
+        ronda.totalRecaudado = participantes * 15000;
 
-        ronda.fondoRuleta = 551000;
+        ronda.fondoRuleta = 1000000;
 
         ronda.premioMayor = 1000000;
 
@@ -268,7 +268,7 @@ console.log("==================================");
 
     ) {
 
-        if (ronda.totalParticipantes >= 100) {
+        if (ronda.totalParticipantes >= 200) {
 
             throw new Error(
 
