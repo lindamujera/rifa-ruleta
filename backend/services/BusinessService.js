@@ -22,7 +22,7 @@ class BusinessService {
     ) {
 
         const numeros = Array.from(
-            { length: 99 },
+            { length: 199 },
             (_, index) => index + 1
         ).sort(() => Math.random() - 0.5);
 
