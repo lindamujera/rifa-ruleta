@@ -36,7 +36,7 @@ function RoundCard({
 
         round.maxParticipantes ||
 
-        100;
+        200;
 
     const premioMayor =
 
@@ -48,7 +48,7 @@ function RoundCard({
 
         round.fondoRuleta ||
 
-        551000;
+        1000000;
 
     const estado =
 
