@@ -5,6 +5,14 @@
 import api from "./api";
 
 // ==========================================
+// Obtener todos los pagos (ADMINISTRADOR)
+// ==========================================
+
+const obtenerTodos = async () => {
+    return await api.get("/payments");
+};
+
+// ==========================================
 // Obtener pagos del usuario
 // ==========================================
 
@@ -73,9 +81,7 @@ const crearPago = async (formData) => {
 // ==========================================
 
 const aprobarPago = async (pagoId) => {
-    return await api.put(
-        `/payments/${pagoId}/aprobar`
-    );
+    return await api.put(`/payments/${pagoId}/aprobar`);
 };
 
 // ==========================================
@@ -85,9 +91,7 @@ const aprobarPago = async (pagoId) => {
 const rechazarPago = async (pagoId, motivo) => {
     return await api.put(
         `/payments/${pagoId}/rechazar`,
-        {
-            motivo
-        }
+        { motivo }
     );
 };
 
@@ -104,6 +108,7 @@ const eliminarPago = async (id) => {
 // ==========================================
 
 const paymentService = {
+    obtenerTodos,
     obtenerMisPagos,
     obtenerPendientes,
     obtenerAprobados,
