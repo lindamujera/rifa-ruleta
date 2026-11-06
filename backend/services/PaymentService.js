@@ -542,7 +542,34 @@ async obtenerRechazados(session = null) {
         .session(session);
 
 }
-
+// ==========================================
+// Obtener Todos los Pagos
+// ==========================================
+async obtenerTodos(session = null) {
+    return await Payment.find({})
+        .populate(
+            "usuario",
+            "nombre correo celular saldoGanado totalGanado"
+        )
+        .populate(
+            "administrador",
+            "nombre correo"
+        )
+        .populate(
+            "ronda",
+            "codigo numero estado premioMayor premioAcumulado totalParticipantes ganador"
+        )
+        .populate(
+            "ticket",
+            "codigo numeroRifa estado girosDisponibles"
+        )
+        .populate(
+            "spin",
+            "codigo numero estado premio"
+        )
+        .sort({ createdAt: -1 })
+        .session(session);
+}
 // ==========================================
 // Obtener Pagos por Usuario
 // ==========================================
