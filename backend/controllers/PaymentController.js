@@ -60,6 +60,47 @@ class PaymentController {
         }
     }
     // ==========================================
+// Obtener todos los pagos (ADMINISTRADOR)
+// GET /api/payments
+// ==========================================
+
+async obtenerTodos(req, res) {
+    try {
+        const pagos = await PaymentService.obtenerTodos();
+
+        const host = (
+            process.env.APP_URL ||
+            "https://rifa-ruleta-backend.onrender.com"
+        ).replace(/\/$/, "");
+
+        const pagosConImagen = pagos.map(pago => {
+            const data = pago.toObject();
+
+            return {
+                ...data,
+                comprobanteUrl: data.comprobante
+                    ? `${host}/uploads/comprobantes/${data.comprobante}`
+                    : null
+            };
+        });
+
+        return res.status(200).json({
+            success: true,
+            total: pagosConImagen.length,
+            data: pagosConImagen
+        });
+
+    } catch (error) {
+        console.error("Error obteniendo todos los pagos:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "No fue posible obtener los pagos.",
+            error: error.message
+        });
+    }
+}
+    // ==========================================
     // Aprobar Pago
     // ==========================================
 
