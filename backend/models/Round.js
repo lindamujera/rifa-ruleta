@@ -60,12 +60,12 @@ const roundSchema = new mongoose.Schema(
             type: Number,
             default: 0,
             min: 0,
-            max: 100
+            max: 200
         },
 
         valorJugada: {
             type: Number,
-            default: 25000,
+            default: 15000,
             min: 0
         },
 
@@ -77,25 +77,25 @@ const roundSchema = new mongoose.Schema(
 
         fondoRuleta: {
             type: Number,
-            default: 551000,
+            default: 1.000000,
             min: 0
         },
 
         premioMayor: {
             type: Number,
-            default: 1000000,
+            default: 1.000000,
             min: 0
         },
 
         totalPremiosRuleta: {
             type: Number,
-            default: 0,
+            default: 1.000000,
             min: 0
         },
 
         ganancia: {
             type: Number,
-            default: 949000,
+            default: 1.000000,
             min: 0
         },
 
