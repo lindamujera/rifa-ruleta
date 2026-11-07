@@ -252,7 +252,7 @@ async contarTicketsUsuario(
         if (ticket.numeroRifa !== null)
             throw new Error("El Ticket ya tiene número.");
 
-        if (numero < 1 || numero > 99)
+        if (numero < 1 || numero > 200)
             throw new Error("Número inválido.");
 
         const disponible =
