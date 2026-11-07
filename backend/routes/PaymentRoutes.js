@@ -22,7 +22,16 @@ router.post(
     upload.single("comprobante"),
     PaymentController.crear
 );
-
+// ==========================================
+// Obtener todos los pagos (ADMINISTRADOR)
+// GET /api/payments
+// ==========================================
+router.get(
+    "/",
+    auth,
+    roles("ADMIN"),
+    PaymentController.obtenerTodos
+);
 // ==========================================
 // Aprobar Pago
 // PUT /api/payments/:pagoId/aprobar
