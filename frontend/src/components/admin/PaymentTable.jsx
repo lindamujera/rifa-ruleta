@@ -1,7 +1,3 @@
-// ==========================================
-// src/components/admin/PaymentTable.jsx
-// ==========================================
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,11 +10,6 @@ import Button from "../common/Button";
 import "./PaymentTable.css";
 
 function PaymentTable() {
-
-    // ==========================================
-    // Estados
-    // ==========================================
-
     const [payments, setPayments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -27,8 +18,16 @@ function PaymentTable() {
 
     const navigate = useNavigate();
 
-   // ==========================================
-    // Cargar Pagos
+    // URL del backend publicado
+    const API_BASE_URL = (
+        import.meta.env.VITE_API_URL ||
+        "https://rifa-ruleta-backend.onrender.com/api"
+    )
+        .replace(/\/api\/?$/, "")
+        .replace(/\/$/, "");
+
+    // ==========================================
+    // CARGAR PAGOS
     // ==========================================
 
     useEffect(() => {
@@ -39,46 +38,51 @@ function PaymentTable() {
         try {
             setLoading(true);
             setError("");
-            setSuccess("");
 
-            // 🟢 CAMBIO AQUÍ: Llamamos a obtenerTodos() en lugar de obtenerPendientes()
             const response = await paymentService.obtenerTodos();
 
-            console.log("Respuesta backend pagos:", response.data);
+            const data = response?.data?.data || [];
 
-            const data = response.data?.data || response.data || [];
+            const pagosOrdenados = [...data].sort(
+                (a, b) =>
+                    new Date(b.createdAt || 0) -
+                    new Date(a.createdAt || 0)
+            );
 
-            setPayments(Array.isArray(data) ? data : []);
+            setPayments(pagosOrdenados);
 
         } catch (err) {
-
             console.error("Error cargando pagos:", err);
 
             setError(
                 err.response?.data?.message ||
                 "No fue posible cargar los pagos."
             );
-
         } finally {
             setLoading(false);
         }
     };
+
     // ==========================================
-    // Aprobar Pago
+    // APROBAR PAGO
     // ==========================================
 
     const approvePayment = async (paymentId) => {
         try {
             setProcessingId(paymentId);
+            setError("");
+            setSuccess("");
 
-            const response = await paymentService.aprobarPago(paymentId);
+            const response =
+                await paymentService.aprobarPago(paymentId);
 
             setSuccess("Pago aprobado correctamente.");
 
             const data = response?.data?.data;
-            const spin = data?.spin;
-
-            const spinId = data?.spinId || spin?.id || spin?._id;
+            const spinId =
+                data?.spinId ||
+                data?.spin?._id ||
+                data?.spin?.id;
 
             if (spinId) {
                 navigate(`/roulette/${spinId}`);
@@ -88,111 +92,185 @@ function PaymentTable() {
             await loadPayments();
 
         } catch (err) {
-
             console.error("Error aprobando pago:", err);
 
-            alert(
+            setError(
                 err.response?.data?.message ||
                 "No fue posible aprobar el pago."
             );
-
         } finally {
             setProcessingId(null);
         }
     };
 
     // ==========================================
-    // Rechazar Pago
+    // RECHAZAR PAGO
     // ==========================================
 
     const rejectPayment = async (paymentId) => {
         try {
             setProcessingId(paymentId);
+            setError("");
+            setSuccess("");
 
-            await paymentService.rechazarPago(paymentId);
+            await paymentService.rechazarPago(
+                paymentId,
+                "Pago rechazado por el administrador."
+            );
 
             setSuccess("Pago rechazado correctamente.");
 
             await loadPayments();
 
         } catch (err) {
-
             console.error("Error rechazando pago:", err);
 
-            alert(
+            setError(
                 err.response?.data?.message ||
                 "No fue posible rechazar el pago."
             );
-
         } finally {
             setProcessingId(null);
         }
     };
 
     // ==========================================
-    // Formatos y Utilidades
+    // FORMATO MONEDA
     // ==========================================
 
-    const formatCurrency = (value = 0) => {
-        return Number(value).toLocaleString("es-CO");
+    const formatCurrency = (value) => {
+        const amount = Number(value);
+
+        if (!Number.isFinite(amount)) return "0";
+
+        return amount.toLocaleString("es-CO");
     };
+
+    // ==========================================
+    // FORMATO FECHA
+    // ==========================================
 
     const formatDate = (date) => {
         if (!date) return "-";
-        return new Date(date).toLocaleString("es-CO");
+
+        const fecha = new Date(date);
+
+        if (Number.isNaN(fecha.getTime())) return "-";
+
+        return fecha.toLocaleString("es-CO");
     };
 
+    // ==========================================
+    // ESTADO DEL PAGO
+    // ==========================================
+
     const getStatusClass = (status = "") => {
-        switch (status.toLowerCase()) {
+        switch (String(status).toLowerCase()) {
             case "approved":
             case "aprobado":
                 return "approved";
+
             case "pending":
             case "pendiente":
                 return "pending";
+
             case "rejected":
             case "rechazado":
                 return "rejected";
+
             default:
                 return "processing";
         }
     };
 
-    // 🟢 AQUÍ PEGAS ESTA VERSIÓN ACTUALIZADA PARA RENDER
+    // ==========================================
+    // URL DEL COMPROBANTE
+    // ==========================================
+
     const getComprobanteUrl = (payment) => {
-        const rawUrl = (
+        const rawUrl =
             payment.comprobanteUrl ||
-            payment.comprobante ||
             payment.comprobante_url ||
             payment.proofUrl ||
-            null
-        );
+            payment.comprobante;
 
         if (!rawUrl) return null;
 
-        // 1. Si ya viene con https:// completa, se usa directo
-        if (typeof rawUrl === "string" && rawUrl.startsWith("https://")) {
-            return rawUrl;
+        if (typeof rawUrl !== "string") return null;
+
+        const value = rawUrl.trim();
+
+        if (!value) return null;
+
+        // URL completa
+        if (/^https?:\/\//i.test(value)) {
+            return value;
         }
 
-        // 2. Obtener URL base de la variable de entorno o Render
-        const apiBase = import.meta.env.VITE_API_URL || "https://rifa-ruleta-backend.onrender.com";
+        // Ruta relativa del archivo
+        if (value.startsWith("/")) {
+            return `${API_BASE_URL}${value}`;
+        }
 
-        // 3. Limpiar '/api' del final y asegurar HTTPS
-        const serverDomain = apiBase
-            .replace(/\/api\/?$/, "")
-            .replace(/\/$/, "")
-            .replace("http://", "https://");
+        // Si solo viene el nombre del archivo
+        const fileName = value.split(/[/\\]/).pop();
 
-        // 4. Extraer el nombre del archivo (ej: 1786473273927-206378426.png)
-        const fileName = rawUrl.split(/[/\\]/).pop();
-
-        // 5. Retornar URL apuntando a la subcarpeta /uploads/comprobantes/ en Render
-        return `${serverDomain}/uploads/comprobantes/${fileName}`;
+        return `${API_BASE_URL}/uploads/comprobantes/${encodeURIComponent(fileName)}`;
     };
 
     // ==========================================
-    // Loading
+    // PREMIO DE LA RULETA
+    // ==========================================
+
+    const getPremioGiro = (payment) => {
+        return (
+            payment.spin?.premio ??
+            payment.ticket?.premioRuleta ??
+            payment.premioRuleta ??
+            payment.premio ??
+            null
+        );
+    };
+
+    // ==========================================
+    // PREMIO MAYOR
+    // ==========================================
+
+    const getPremioMayor = (payment) => {
+        return (
+            payment.ronda?.premioMayor ??
+            payment.ronda?.premioAcumulado ??
+            null
+        );
+    };
+
+    // ==========================================
+    // CANTIDAD DE TICKETS
+    // ==========================================
+
+    const getTickets = (payment) => {
+        return (
+            payment.usuario?.ticketsComprados ??
+            payment.totalTickets ??
+            (payment.ticket ? 1 : 0)
+        );
+    };
+
+    // ==========================================
+    // TOTAL PAGADO
+    // ==========================================
+
+    const getTotalPagado = (payment) => {
+        return (
+            payment.usuario?.totalPagado ??
+            payment.totalPagado ??
+            payment.valor ??
+            0
+        );
+    };
+
+    // ==========================================
+    // LOADING
     // ==========================================
 
     if (loading) {
@@ -200,7 +278,7 @@ function PaymentTable() {
     }
 
     // ==========================================
-    // Render
+    // TABLA ADMINISTRACIÓN DE PAGOS
     // ==========================================
 
     return (
@@ -208,167 +286,268 @@ function PaymentTable() {
 
             <div className="payment-table-header">
                 <h2>💳 Administración de Pagos</h2>
+
+                <Button onClick={loadPayments}>
+                    Actualizar
+                </Button>
             </div>
 
-            {error && <Alert type="error" message={error} />}
+            {error && (
+                <Alert type="error" message={error} />
+            )}
 
-            {success && <Alert type="success" message={success} />}
+            {success && (
+                <Alert type="success" message={success} />
+            )}
 
             {payments.length === 0 ? (
 
-                <Alert type="info" message="No existen pagos registrados." />
+                <Alert
+                    type="info"
+                    message="No existen pagos registrados."
+                />
 
             ) : (
 
-                <table className="payment-table">
+                <div className="payment-table-wrapper">
 
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                            <th>Tickets</th>
-                            <th>Total Pagado</th>
-                            <th>Referencia</th>
-                            <th>Valor</th>
-                            <th>Ticket</th>
-                            <th>Ronda</th>
-                            <th>Premio</th>
-                            <th>Fecha</th>
-                            <th>Comprobante</th>
-                            <th>Estado Pago</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
+                    <table className="payment-table">
 
-                    <tbody>
-                        {payments.map((payment) => {
-                            const proofUrl = getComprobanteUrl(payment);
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Correo</th>
+                                <th>Celular</th>
+                                <th>Rol</th>
+                                <th>Estado usuario</th>
+                                <th>Tickets</th>
+                                <th>Total pagado</th>
+                                <th>Referencia</th>
+                                <th>Valor</th>
+                                <th>Ticket</th>
+                                <th>Número</th>
+                                <th>Ronda</th>
+                                <th>Premio giro</th>
+                                <th>Premio mayor</th>
+                                <th>Fecha</th>
+                                <th>Comprobante</th>
+                                <th>Estado pago</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
 
-                            return (
-                                <tr key={payment._id || payment.id}>
+                        <tbody>
 
-                                    <td>{payment.usuario?.nombre || "-"}</td>
+                            {payments.map((payment) => {
+                                const paymentId =
+                                    payment._id || payment.id;
 
-                                    <td>{payment.usuario?.correo || "-"}</td>
+                                const proofUrl =
+                                    getComprobanteUrl(payment);
 
-                                    <td>{payment.usuario?.celular || "-"}</td>
+                                const premioGiro =
+                                    getPremioGiro(payment);
 
-                                    <td>{payment.usuario?.rol || "-"}</td>
+                                const premioMayor =
+                                    getPremioMayor(payment);
 
-                                    <td>
-                                        <span className={`user-status ${payment.usuario?.estado?.toLowerCase() || ""}`}>
-                                            {payment.usuario?.estado || "-"}
-                                        </span>
-                                    </td>
+                                return (
+                                    <tr key={paymentId}>
 
-                                    <td>{payment.usuario?.ticketsComprados || 0}</td>
+                                        <td>
+                                            {payment.usuario?.nombre || "-"}
+                                        </td>
 
-                                    <td>${formatCurrency(payment.usuario?.totalPagado || 0)}</td>
+                                        <td>
+                                            {payment.usuario?.correo || "-"}
+                                        </td>
 
-                                    <td>{payment.referencia || "-"}</td>
+                                        <td>
+                                            {payment.usuario?.celular || "-"}
+                                        </td>
 
-                                    <td>${formatCurrency(payment.valor || 0)}</td>
+                                        <td>
+                                            {payment.usuario?.rol || "-"}
+                                        </td>
 
-                                    <td>{payment.ticket?.codigo || "-"}</td>
-
-                                    <td>
-                                        {
-                                            payment.ticket?.numeroRifa ||
-                                            payment.ronda?.numero ||
-                                            payment.ronda?.codigo ||
-                                            "-"
-                                        }
-                                    </td>
-
-                                    <td>
-                                        {
-                                            payment.ronda?.premio
-                                                ? `$ ${formatCurrency(payment.ronda.premio)}`
-                                                : "$ 0"
-                                        }
-                                    </td>
-
-                                    <td>{formatDate(payment.createdAt)}</td>
-
-                                    <td>
-                                        {proofUrl ? (
-                                            <a
-                                                href={proofUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="payment-proof-link"
-                                            >
-                                                <img
-                                                    src={proofUrl}
-                                                    alt="Comprobante de pago"
-                                                    className="payment-proof-thumb"
-                                                    onError={(e) => {
-                                                        console.error("Error cargando la imagen desde:", proofUrl);
-                                                    }}
-                                                />
-                                            </a>
-                                        ) : (
-                                            <span className="no-proof-text">
-                                                Sin comprobante
+                                        <td>
+                                            <span className="user-status">
+                                                {payment.usuario?.estado || "-"}
                                             </span>
-                                        )}
-                                    </td>
+                                        </td>
 
-                                    <td>
-                                        <span
-                                            className={`payment-status ${getStatusClass(
-                                                payment.estado || "PENDIENTE"
-                                            )}`}
-                                        >
-                                            {payment.estado || "PENDIENTE"}
-                                        </span>
-                                    </td>
+                                        <td>
+                                            {getTickets(payment)}
+                                        </td>
 
-                                    <td>
+                                        <td>
+                                            $ {formatCurrency(
+                                                getTotalPagado(payment)
+                                            )}
+                                        </td>
 
-                                        {payment.estado === "PENDIENTE" ? (
+                                        <td>
+                                            {payment.referencia || "-"}
+                                        </td>
 
-                                            <div className="payment-actions">
+                                        <td>
+                                            $ {formatCurrency(payment.valor)}
+                                        </td>
 
-                                                <Button
-                                                    className="btn-approve"
-                                                    disabled={processingId === payment._id}
-                                                    onClick={() => approvePayment(payment._id)}
+                                        <td>
+                                            {payment.ticket?.codigo || "-"}
+                                        </td>
+
+                                        <td>
+                                            {payment.ticket?.numeroRifa
+                                                ? String(
+                                                    payment.ticket.numeroRifa
+                                                ).padStart(3, "0")
+                                                : "-"}
+                                        </td>
+
+                                        <td>
+                                            {payment.ronda?.numero ||
+                                                payment.ronda?.codigo ||
+                                                "-"}
+                                        </td>
+
+                                        <td>
+                                            {premioGiro !== null
+                                                ? `$ ${formatCurrency(premioGiro)}`
+                                                : "Pendiente de giro"}
+                                        </td>
+
+                                        <td>
+                                            {premioMayor !== null
+                                                ? `$ ${formatCurrency(premioMayor)}`
+                                                : "-"}
+                                        </td>
+
+                                        <td>
+                                            {formatDate(payment.createdAt)}
+                                        </td>
+
+                                        {/* COMPROBANTE */}
+
+                                        <td className="payment-proof-cell">
+
+                                            {proofUrl ? (
+
+                                                <a
+                                                    href={proofUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="payment-proof-link"
+                                                    title="Abrir comprobante completo"
                                                 >
-                                                    {processingId === payment._id
-                                                        ? "Procesando..."
-                                                        : "Aprobar"}
-                                                </Button>
 
-                                                <Button
-                                                    className="btn-reject"
-                                                    disabled={processingId === payment._id}
-                                                    onClick={() => rejectPayment(payment._id)}
-                                                >
-                                                    {processingId === payment._id
-                                                        ? "Procesando..."
-                                                        : "Rechazar"}
-                                                </Button>
+                                                    <img
+                                                        src={proofUrl}
+                                                        alt="Comprobante de pago"
+                                                        className="payment-proof-thumb"
+                                                        loading="lazy"
+                                                        onError={(e) => {
+                                                            e.currentTarget.style.display = "none";
 
-                                            </div>
+                                                            const message =
+                                                                e.currentTarget.parentElement
+                                                                    ?.querySelector(".proof-error");
 
-                                        ) : (
+                                                            if (message) {
+                                                                message.style.display = "inline";
+                                                            }
+                                                        }}
+                                                    />
 
-                                            <span>✔ Procesado</span>
+                                                    <span className="proof-error">
+                                                        Imagen no disponible
+                                                    </span>
 
-                                        )}
+                                                    <span className="proof-open">
+                                                        Ver comprobante
+                                                    </span>
 
-                                    </td>
+                                                </a>
 
-                                </tr>
-                            );
-                        })}
-                    </tbody>
+                                            ) : (
 
-                </table>
+                                                <span className="no-proof-text">
+                                                    Sin comprobante
+                                                </span>
+
+                                            )}
+
+                                        </td>
+
+                                        {/* ESTADO PAGO */}
+
+                                        <td>
+                                            <span
+                                                className={`payment-status ${getStatusClass(
+                                                    payment.estado
+                                                )}`}
+                                            >
+                                                {payment.estado || "PENDIENTE"}
+                                            </span>
+                                        </td>
+
+                                        {/* ACCIONES */}
+
+                                        <td>
+
+                                            {String(payment.estado).toUpperCase() ===
+                                            "PENDIENTE" ? (
+
+                                                <div className="payment-actions">
+
+                                                    <Button
+                                                        className="btn-approve"
+                                                        disabled={
+                                                            processingId === paymentId
+                                                        }
+                                                        onClick={() =>
+                                                            approvePayment(paymentId)
+                                                        }
+                                                    >
+                                                        {processingId === paymentId
+                                                            ? "Procesando..."
+                                                            : "Aprobar"}
+                                                    </Button>
+
+                                                    <Button
+                                                        className="btn-reject"
+                                                        disabled={
+                                                            processingId === paymentId
+                                                        }
+                                                        onClick={() =>
+                                                            rejectPayment(paymentId)
+                                                        }
+                                                    >
+                                                        {processingId === paymentId
+                                                            ? "Procesando..."
+                                                            : "Rechazar"}
+                                                    </Button>
+
+                                                </div>
+
+                                            ) : (
+
+                                                <span>✔ Procesado</span>
+
+                                            )}
+
+                                        </td>
+
+                                    </tr>
+                                );
+                            })}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             )}
 
