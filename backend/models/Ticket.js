@@ -69,7 +69,7 @@ const ticketSchema = new mongoose.Schema(
         type: Number,
         default: null,
         min: 1,
-        max: 100
+        max: 200
     },
 
     // ======================================
