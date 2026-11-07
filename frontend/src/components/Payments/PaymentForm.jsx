@@ -273,7 +273,7 @@ function PaymentForm({
 
                         onChange={handleChange}
 
-                        min="25000"
+                        min=15000"
 
                         required
 
