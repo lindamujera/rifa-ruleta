@@ -415,56 +415,81 @@ return res.json({
 
     }
 
-    // ==========================================
-    // Obtener Todos los Pagos (Administrador)
-    // ==========================================
+   // ==========================================
+// Obtener Todos los Pagos (Administrador)
+// ==========================================
 
-    async todos(req, res) {
+async todos(req, res) {
+    try {
+        const pagos = await PaymentService.obtenerTodos();
 
-        try {
+        const host = (
+            process.env.APP_URL ||
+            "https://rifa-ruleta-backend.onrender.com"
+        ).replace(/\/$/, "");
 
-            const pagos = await PaymentService.obtenerTodos();
+        const pagosConDatos = pagos.map((pago) => {
+            const data = pago.toObject();
 
-            const host = process.env.APP_URL || "http://localhost:5001";
+            const comprobante = data.comprobante || null;
 
-            const pagosConImagen = pagos.map(pago => ({
+            let comprobanteUrl = null;
 
-                ...pago.toObject(),
+            if (comprobante) {
+                if (/^https?:\/\//i.test(comprobante)) {
+                    comprobanteUrl = comprobante;
+                } else if (comprobante.startsWith("/")) {
+                    comprobanteUrl = `${host}${comprobante}`;
+                } else {
+                    const nombreArchivo = comprobante.split(/[/\\]/).pop();
 
-                comprobanteUrl:
+                    comprobanteUrl =
+                        `${host}/uploads/comprobantes/${encodeURIComponent(nombreArchivo)}`;
+                }
+            }
 
-                    pago.comprobante
+            // Buscar el giro asociado al pago o al ticket
+            const spin =
+                data.spin ||
+                data.ticket?.spin ||
+                null;
 
-                        ? `${host}/uploads/comprobantes/${pago.comprobante}`
+            // Obtener premio de la ruleta
+            const premioGiro =
+                spin?.premio ??
+                data.ticket?.premioRuleta ??
+                data.premioRuleta ??
+                null;
 
-                        : null
+            // Obtener premio mayor de la ronda
+            const premioMayor =
+                data.ronda?.premioMayor ??
+                data.ronda?.premioAcumulado ??
+                null;
 
-            }));
+            return {
+                ...data,
+                comprobanteUrl,
+                spin,
+                premioGiro,
+                premioMayor
+            };
+        });
 
-            return res.json({
+        return res.status(200).json({
+            success: true,
+            total: pagosConDatos.length,
+            data: pagosConDatos
+        });
 
-                success: true,
+    } catch (error) {
+        console.error("Error obteniendo todos los pagos:", error);
 
-                total: pagosConImagen.length,
-
-                data: pagosConImagen
-
-            });
-
-        } catch (error) {
-
-            return res.status(500).json({
-
-                success: false,
-
-                message: error.message
-
-            });
-
-        }
-
+        return res.status(500).json({
+            success: false,
+            message: "No fue posible obtener los pagos.",
+            error: error.message
+        });
     }
-
 }
-
 module.exports = new PaymentController(); 
