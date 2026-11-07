@@ -86,17 +86,16 @@ export default function Tickets() {
     return (
         <div className="selector-container">
             <h2>🎟 Selecciona tu Número de Rifa</h2>
-            <p className="subtitulo">Escoge un número disponible entre el <strong>1 y el 99</strong></p>
+            <p className="subtitulo">Escoge un número disponible entre el <strong>1 y el 200</strong></p>
 
             {mensaje && <div className="alerta-exito">{mensaje}</div>}
 
-            {/* TABLA / CUADRÍCULA DEL 1 AL 99 */}
-            {/* TABLA DEL 00 AL 99 */}
+            {/* TABLA / CUADRÍCULA DEL 1 AL 200 */}
             <div className="numbers-grid">
-                {Array.from({ length: 100 }, (_, i) => i).map((numero) => {
+                {Array.from({ length: 200 }, (_, i) => i + 1).map((numero) => {
                     const estaOcupado = numerosOcupados.includes(numero);
                     const esSeleccionado = numeroSeleccionado === numero;
-                    const numeroTexto = String(numero).padStart(2, "0");
+                    const numeroTexto = String(numero);
 
                     return (
                         <button
