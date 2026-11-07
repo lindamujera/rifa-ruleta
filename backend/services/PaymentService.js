@@ -992,6 +992,80 @@ async eliminar(
 }
 
 // ==========================================
+// Obtener Todos los Pagos (Administrador)
+// ==========================================
+
+async obtenerTodos(session = null) {
+
+    return await Payment.find()
+
+        .populate(
+            "usuario",
+            `
+            nombre
+            correo
+            celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
+            saldoGanado
+            totalGanado
+            `
+        )
+
+        .populate(
+            "administrador",
+            `
+            nombre
+            correo
+            `
+        )
+
+        .populate(
+            "ticket",
+            `
+            codigo
+            numeroRifa
+            estado
+            girosDisponibles
+            `
+        )
+
+        .populate(
+            "spin",
+            `
+            codigo
+            numero
+            estado
+            premio
+            `
+        )
+
+        .populate(
+            "ronda",
+            `
+            codigo
+            numero
+            estado
+            premioMayor
+            premioAcumulado
+            totalParticipantes
+            ganador
+            `
+        )
+
+        .sort({
+
+            createdAt: -1
+
+        })
+
+        .session(session);
+
+}
+
+// ==========================================
 // Eliminar Pago
 // ==========================================
 async eliminar(
@@ -1019,3 +1093,4 @@ async eliminar(
 // ==========================================
 
 module.exports = new PaymentService();
+
