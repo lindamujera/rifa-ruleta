@@ -2,7 +2,7 @@
 
 module.exports = {
 
-    MAX_PARTICIPANTES: 100,
+    MAX_PARTICIPANTES: 200,
 
     VALOR_JUGADA: 15000,
 
