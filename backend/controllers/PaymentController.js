@@ -491,4 +491,5 @@ async todos(req, res) {
             error: error.message
         });
     }
+}
 module.exports = new PaymentController(); 
