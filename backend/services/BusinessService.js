@@ -22,7 +22,7 @@ class BusinessService {
     ) {
 
         const numeros = Array.from(
-            { length: 199 },
+            { length: 200 },
             (_, index) => index + 1
         ).sort(() => Math.random() - 0.5);
 
@@ -228,11 +228,15 @@ console.log("===== TICKET CREADO =====");
 console.log(ticket.codigo);
 
 // ==========================================
-// El cliente seleccionará el número del Ticket
+// Activar el ticket para que el cliente pueda seleccionar número
 // ==========================================
 
+ticket.estado = "ACTIVO";
+ticket.fechaActivacion = new Date();
+await ticket.save({ session });
+
 console.log(
-    "Ticket creado pendiente de selección de número:",
+    "Ticket activado para selección de número:",
     ticket.codigo
 );
  
