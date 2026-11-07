@@ -29,7 +29,7 @@ export default function Payments() {
 
     const [metodo, setMetodo] = useState("NEQUI");
 
-    const valor = 25000;
+    const valor = 15000;
 
     const [comprobante, setComprobante] = useState(null);
 
