@@ -59,47 +59,6 @@ class PaymentController {
             });
         }
     }
-   // ==========================================
-// Obtener todos los pagos (ADMINISTRADOR)
-// GET /api/payments
-// ==========================================
-
-async obtenerTodos(req, res) {
-    try {
-        const pagos = await PaymentService.obtenerTodos();
-
-        const host = (
-            process.env.APP_URL ||
-            "https://rifa-ruleta-backend.onrender.com"
-        ).replace(/\/$/, "");
-
-        const pagosConImagen = pagos.map(pago => {
-            const data = pago.toObject();
-
-            return {
-                ...data,
-                comprobanteUrl: data.comprobante
-                    ? `${host}/uploads/comprobantes/${data.comprobante}`
-                    : null
-            };
-        });
-
-        return res.status(200).json({
-            success: true,
-            total: pagosConImagen.length,
-            data: pagosConImagen
-        });
-
-    } catch (error) {
-        console.error("Error obteniendo todos los pagos:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "No fue posible obtener los pagos.",
-            error: error.message
-        });
-    }
-}
     // ==========================================
     // Aprobar Pago
     // ==========================================
@@ -439,6 +398,56 @@ return res.json({
                 success: true,
 
                 message: "Pago eliminado correctamente."
+
+            });
+
+        } catch (error) {
+
+            return res.status(500).json({
+
+                success: false,
+
+                message: error.message
+
+            });
+
+        }
+
+    }
+
+    // ==========================================
+    // Obtener Todos los Pagos (Administrador)
+    // ==========================================
+
+    async todos(req, res) {
+
+        try {
+
+            const pagos = await PaymentService.obtenerTodos();
+
+            const host = process.env.APP_URL || "http://localhost:5001";
+
+            const pagosConImagen = pagos.map(pago => ({
+
+                ...pago.toObject(),
+
+                comprobanteUrl:
+
+                    pago.comprobante
+
+                        ? `${host}/uploads/comprobantes/${pago.comprobante}`
+
+                        : null
+
+            }));
+
+            return res.json({
+
+                success: true,
+
+                total: pagosConImagen.length,
+
+                data: pagosConImagen
 
             });
 
