@@ -227,6 +227,10 @@ function PaymentTable() {
                             <th>Usuario</th>
                             <th>Correo</th>
                             <th>Celular</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Tickets</th>
+                            <th>Total Pagado</th>
                             <th>Referencia</th>
                             <th>Valor</th>
                             <th>Ticket</th>
@@ -234,7 +238,7 @@ function PaymentTable() {
                             <th>Premio</th>
                             <th>Fecha</th>
                             <th>Comprobante</th>
-                            <th>Estado</th>
+                            <th>Estado Pago</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -251,6 +255,18 @@ function PaymentTable() {
                                     <td>{payment.usuario?.correo || "-"}</td>
 
                                     <td>{payment.usuario?.celular || "-"}</td>
+
+                                    <td>{payment.usuario?.rol || "-"}</td>
+
+                                    <td>
+                                        <span className={`user-status ${payment.usuario?.estado?.toLowerCase() || ""}`}>
+                                            {payment.usuario?.estado || "-"}
+                                        </span>
+                                    </td>
+
+                                    <td>{payment.usuario?.ticketsComprados || 0}</td>
+
+                                    <td>${formatCurrency(payment.usuario?.totalPagado || 0)}</td>
 
                                     <td>{payment.referencia || "-"}</td>
 
@@ -279,9 +295,9 @@ function PaymentTable() {
 
                                     <td>
                                         {proofUrl ? (
-                                            <a 
-                                                href={proofUrl} 
-                                                target="_blank" 
+                                            <a
+                                                href={proofUrl}
+                                                target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="payment-proof-link"
                                             >
