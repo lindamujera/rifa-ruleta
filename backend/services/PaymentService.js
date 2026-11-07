@@ -108,6 +108,10 @@ async obtenerPorId(
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -191,6 +195,10 @@ async obtenerPorCodigo(codigo) {
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -256,6 +264,10 @@ async obtenerPorReferencia(referencia) {
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -325,6 +337,10 @@ async obtenerPendientes(session = null) {
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -414,6 +430,10 @@ async obtenerAprobados(session = null) {
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -487,6 +507,10 @@ async obtenerRechazados(session = null) {
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
@@ -542,34 +566,7 @@ async obtenerRechazados(session = null) {
         .session(session);
 
 }
-// ==========================================
-// Obtener Todos los Pagos
-// ==========================================
-async obtenerTodos(session = null) {
-    return await Payment.find({})
-        .populate(
-            "usuario",
-            "nombre correo celular saldoGanado totalGanado"
-        )
-        .populate(
-            "administrador",
-            "nombre correo"
-        )
-        .populate(
-            "ronda",
-            "codigo numero estado premioMayor premioAcumulado totalParticipantes ganador"
-        )
-        .populate(
-            "ticket",
-            "codigo numeroRifa estado girosDisponibles"
-        )
-        .populate(
-            "spin",
-            "codigo numero estado premio"
-        )
-        .sort({ createdAt: -1 })
-        .session(session);
-}
+
 // ==========================================
 // Obtener Pagos por Usuario
 // ==========================================
@@ -590,6 +587,10 @@ async obtenerPorUsuario(
             nombre
             correo
             celular
+            rol
+            estado
+            ticketsComprados
+            totalPagado
             saldoGanado
             totalGanado
             `
