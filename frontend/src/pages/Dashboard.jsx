@@ -343,7 +343,7 @@ export default function Dashboard() {
 
                         <p>
 
-                            $25.000 COP
+                            $15.000 COP
 
                         </p>
 
@@ -375,7 +375,7 @@ export default function Dashboard() {
 
                         <p>
 
-                            0 / 100
+                            0 / 200
 
                         </p>
 
