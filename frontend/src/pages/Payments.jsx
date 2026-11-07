@@ -480,7 +480,7 @@ export default function Payments() {
 
                                     Realiza una transferencia por
 
-                                    <strong> $25.000 COP </strong>
+                                    <strong> $15.000 COP </strong>
 
                                     al número anterior.
 
