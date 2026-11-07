@@ -139,10 +139,10 @@ async escogerNumero(
 
         }
 
-        if (numero < 1 || numero > 99) {
-
+        if (numero < 1 || numero > 200) {
+     
             throw new Error(
-                "El número debe estar entre 1 y 99."
+                "El número debe estar entre 1 y 200."
             );
 
         }
