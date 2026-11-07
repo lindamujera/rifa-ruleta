@@ -59,7 +59,7 @@ const paymentSchema = new mongoose.Schema(
     valor: {
       type: Number,
       required: true,
-      default: 25000,
+      default: 15000,
       min: 0
     },
 
