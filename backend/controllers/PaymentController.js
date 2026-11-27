@@ -5,6 +5,23 @@
 const PaymentService = require("../services/PaymentService");
 const BusinessService = require("../services/BusinessService");
 
+const getComprobanteUrl = (comprobante, req) => {
+    if (!comprobante) return null;
+
+    const raw = String(comprobante).replace(/\\/g, "/");
+
+    if (/^https?:\/\//i.test(raw)) {
+        return raw;
+    }
+
+    const fileName = raw.split("/").pop();
+    const configuredHost = process.env.APP_URL?.replace(/\/$/, "");
+    const requestHost = `${req.protocol}://${req.get("host")}`;
+    const host = configuredHost || requestHost;
+
+    return `${host}/uploads/comprobantes/${encodeURIComponent(fileName)}`;
+};
+
 class PaymentController {
 
     // ==========================================
@@ -155,19 +172,11 @@ class PaymentController {
 
           const pagos = await PaymentService.obtenerPendientes();
 
-const host = process.env.APP_URL || "http://localhost:5001";
-
 const pagosConImagen = pagos.map(pago => ({
 
     ...pago.toObject(),
 
-    comprobanteUrl:
-
-        pago.comprobante
-
-            ? `${host}/uploads/comprobantes/${pago.comprobante}`
-
-            : null
+    comprobanteUrl: getComprobanteUrl(pago.comprobante, req)
 
 }));
 
@@ -415,82 +424,48 @@ return res.json({
 
     }
 
-   // ==========================================
-// Obtener Todos los Pagos (Administrador)
-// ==========================================
+    // ==========================================
+    // Obtener Todos los Pagos (Administrador)
+    // ==========================================
 
-async todos(req, res) {
-    try {
-        const pagos = await PaymentService.obtenerTodos();
+    async todos(req, res) {
 
-        const host = (
-            process.env.APP_URL ||
-            "https://rifa-ruleta-backend.onrender.com"
-        ).replace(/\/$/, "");
+        try {
 
-        const pagosConDatos = pagos.map((pago) => {
-            const data = pago.toObject();
+            const pagos = await PaymentService.obtenerTodos();
 
-            const comprobante = data.comprobante || null;
+            const pagosConImagen = pagos.map(pago => ({
 
-            let comprobanteUrl = null;
+                ...pago.toObject(),
 
-            if (comprobante) {
-                if (/^https?:\/\//i.test(comprobante)) {
-                    comprobanteUrl = comprobante;
-                } else if (comprobante.startsWith("/")) {
-                    comprobanteUrl = `${host}${comprobante}`;
-                } else {
-                    const nombreArchivo = comprobante.split(/[/\\]/).pop();
+                comprobanteUrl: getComprobanteUrl(pago.comprobante, req)
 
-                    comprobanteUrl =
-                        `${host}/uploads/comprobantes/${encodeURIComponent(nombreArchivo)}`;
-                }
-            }
+            }));
 
-            // Buscar el giro asociado al pago o al ticket
-            const spin =
-                data.spin ||
-                data.ticket?.spin ||
-                null;
+            return res.json({
 
-            // Obtener premio de la ruleta
-            const premioGiro =
-                spin?.premio ??
-                data.ticket?.premioRuleta ??
-                data.premioRuleta ??
-                null;
+                success: true,
 
-            // Obtener premio mayor de la ronda
-            const premioMayor =
-                data.ronda?.premioMayor ??
-                data.ronda?.premioAcumulado ??
-                null;
+                total: pagosConImagen.length,
 
-            return {
-                ...data,
-                comprobanteUrl,
-                spin,
-                premioGiro,
-                premioMayor
-            };
-        });
+                data: pagosConImagen
 
-        return res.status(200).json({
-            success: true,
-            total: pagosConDatos.length,
-            data: pagosConDatos
-        });
+            });
 
-    } catch (error) {
-        console.error("Error obteniendo todos los pagos:", error);
+        } catch (error) {
 
-        return res.status(500).json({
-            success: false,
-            message: "No fue posible obtener los pagos.",
-            error: error.message
-        });
+            return res.status(500).json({
+
+                success: false,
+
+                message: error.message
+
+            });
+
+        }
+
     }
+
 }
-}
-module.exports = new PaymentController(); 
+
+module.exports = new PaymentController();
